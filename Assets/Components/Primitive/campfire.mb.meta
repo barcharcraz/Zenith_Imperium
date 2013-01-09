@@ -1,0 +1,131 @@
+fileFormatVersion: 2
+guid: 79124224faeff2f419b93daf8543a468
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: fire_small1:dragField1
+    100004: fire_small1:emitter1
+    100006: fire_small1:gravityField1
+    100008: fire_small1:group1
+    100010: fire_small1:group2
+    100012: fire_small1:particle1
+    100014: fire_small1:particle3
+    100016: fire_small1:particleShape2_fireDirection
+    100018: fire_small1:particleShape2_fireOrientation
+    100020: fire_small1:particleShape3_fireDirection
+    100022: fire_small1:particleShape3_fireOrientation
+    100024: fire_small1:place3dTexture1
+    100026: fire_small1:place3dTexture2
+    100028: fire_small1:pPlane1
+    100030: fire_small1:turbulenceField1
+    100032: fire_small:fire_small
+    100034: fire_small:group1
+    100036: fire_small:particle1
+    100038: fire_small:particleShape2_fireDirection
+    100040: fire_small:particleShape2_fireOrientation
+    100042: fire_small:place3dTexture1
+    100044: log:Log
+    100046: log:pCylinder1
+    100048: pCylinder1
+    100050: pCylinder2
+    100052: pCylinder3
+    100054: pCylinder4
+    400000: //RootNode
+    400002: fire_small1:dragField1
+    400004: fire_small1:emitter1
+    400006: fire_small1:gravityField1
+    400008: fire_small1:group1
+    400010: fire_small1:group2
+    400012: fire_small1:particle1
+    400014: fire_small1:particle3
+    400016: fire_small1:particleShape2_fireDirection
+    400018: fire_small1:particleShape2_fireOrientation
+    400020: fire_small1:particleShape3_fireDirection
+    400022: fire_small1:particleShape3_fireOrientation
+    400024: fire_small1:place3dTexture1
+    400026: fire_small1:place3dTexture2
+    400028: fire_small1:pPlane1
+    400030: fire_small1:turbulenceField1
+    400032: fire_small:fire_small
+    400034: fire_small:group1
+    400036: fire_small:particle1
+    400038: fire_small:particleShape2_fireDirection
+    400040: fire_small:particleShape2_fireOrientation
+    400042: fire_small:place3dTexture1
+    400044: log:Log
+    400046: log:pCylinder1
+    400048: pCylinder1
+    400050: pCylinder2
+    400052: pCylinder3
+    400054: pCylinder4
+    2300000: fire_small1:pPlane1
+    2300002: log:pCylinder1
+    2300004: pCylinder1
+    2300006: pCylinder2
+    2300008: pCylinder3
+    2300010: pCylinder4
+    3300000: fire_small1:pPlane1
+    3300002: log:pCylinder1
+    3300004: pCylinder1
+    3300006: pCylinder2
+    3300008: pCylinder3
+    3300010: pCylinder4
+    4300000: log:pCylinder1
+    4300002: pCylinder1
+    4300004: pCylinder2
+    4300006: pCylinder3
+    4300008: pCylinder4
+    4300010: fire_small1:pPlane1
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 1
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
