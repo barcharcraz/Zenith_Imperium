@@ -72,12 +72,14 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        GUILayout.BeginVertical();
         GUILayout.Label("Food: " + HarvestedResources.Food);
         GUILayout.Label("Gold: " + HarvestedResources.Gold);
         GUILayout.Label("Stone: " + HarvestedResources.Stone);
         GUILayout.Label("Tin: " + HarvestedResources.Tin);
         GUILayout.Label("Copper: " + HarvestedResources.Copper);
         GUILayout.Label("Bronze: " + HarvestedResources.Bronze);
+        GUILayout.EndVertical();
     }
 
 }

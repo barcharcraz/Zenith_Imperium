@@ -16,24 +16,16 @@ class MinimapController : MonoBehaviour
     private Minimap m_minimap;
     public Camera PlayerCamera;
     public RenderTexture TargetTexture;
+    private GameObject viewBox;
     void Start()
     {
-        
-        //find something with a terrain on it, this is a best guess
-        //of what the user may want the camera to be looking at
-        Terrain terrain = UnityEngine.Object.FindObjectsOfType(typeof(Terrain))[0] as Terrain;
-		
-        
+
+        m_minimap = new Minimap(GameObject.FindGameObjectWithTag("Player").collider.bounds);
+        m_minimap.OverheadObject.camera.orthographicSize = 20;
         //if the user has selected a rendertexture in the inspector to be the target
         //then use that one, otherwise make a new rendertexture and make it avalible
         //via the TargetTexture field
-        if (TargetTexture != null)
-        {
-            m_minimap = new Minimap(TargetTexture, terrain.collider.bounds);
-        } else {
-            m_minimap = new Minimap(terrain.collider.bounds);
-            TargetTexture = m_minimap.Image;
-        }
+        TargetTexture = m_minimap.Image;
         //only use the current camera if PlayerCamera was not set in the
         //inspector
         if (PlayerCamera == null)
@@ -45,6 +37,19 @@ class MinimapController : MonoBehaviour
                 PlayerCamera = GetComponent<Camera>();
             }
         }
+    }
+    void OnGUI()
+    {
+
+        GUILayout.BeginVertical();
+		GUILayout.Box("",GUILayout.Width(128), GUILayout.Height(128));
+		Graphics.DrawTexture(new Rect(0.0f, 0.0f, 128.0f, 128.0f), TargetTexture, new Material(Shader.Find("Unlit/Texture")));
+		GUILayout.EndVertical();
+		
+    }
+    void Update()
+    {
+        m_minimap.OverheadObject.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position + new Vector3(0, 150, 0);
     }
 }
 
