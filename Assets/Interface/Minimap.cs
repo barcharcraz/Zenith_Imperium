@@ -60,11 +60,13 @@ public class Minimap {
     private void initalize(RenderTexture target, Bounds targetArea)
     {
         m_image = target;
+        
         m_overheadObject = new GameObject("MinimapCamera", typeof(Camera));
         //rotate the camera so that it is facing down
         m_overhead.transform.Rotate(m_overhead.transform.right, 90);
         m_overhead.targetTexture = m_image;
         m_overhead.aspect = 1;
+        m_overhead.clearFlags = CameraClearFlags.SolidColor;
         m_overhead.orthographic = true;
         m_overhead.transform.position = targetArea.center;
         m_overhead.orthographicSize = getMaxComponent(targetArea.extents);
@@ -82,51 +84,35 @@ public class Minimap {
     public Mesh getViewBoxMesh(Terrain terrain, Camera playerView)
     {
 		
-        Ray[] rays = new Ray[4]; //each element of the array should be a corner of the projected rectangle
-        RaycastHit[] hits = new RaycastHit[4];
+        Ray[] rays = new Ray[4];
+        float[] hits = new float[4];
         Vector3[] points = new Vector3[4];
-        rays[0] = playerView.ViewportPointToRay(new Vector3(0, 0, 0));
-        rays[1] = playerView.ViewportPointToRay(new Vector3(1, 0, 0));
-        rays[2] = playerView.ViewportPointToRay(new Vector3(1, 1, 0));
-        rays[3] = playerView.ViewportPointToRay(new Vector3(0, 1, 0));
+        Vector3[] viewPortPoints = new Vector3[4];
+        viewPortPoints[0] = new Vector3(0, 0, 0);
+        viewPortPoints[1] = new Vector3(1, 0, 0);
+        viewPortPoints[2] = new Vector3(1, 1, 0);
+        viewPortPoints[3] = new Vector3(0, 1, 0);
+
+        
         int[] tris = { 0, 3, 2, 2, 1, 0 };
-		float topHit = 0.0f;
-		float bottomHit = 0.0f;
+		
         for (int i = 0; i < rays.Length; i++)
         {
-            terrain.collider.Raycast(rays[i], out hits[i], float.PositiveInfinity);
-        }
-        for (int i = 0; i < hits.Length; i++)
-        {
-            if (hits[i].collider != null)
+            rays[i] = playerView.ViewportPointToRay(viewPortPoints[i]);
+            Plane p = new Plane(terrain.transform.up, terrain.transform.position);
+            p.Raycast(rays[i], out hits[i]);
+            if (hits[i] < 0)
             {
-                points[i] = hits[i].point;
-                if (i <= 1)
-                {
-                    bottomHit = hits[i].distance;
-                }
-                else
-                {
-                    topHit = hits[i].distance;
-                }
-            }
-            else
-            {
-                float distance;
-                if (i <= 1)
-                {
-                    distance = bottomHit;
-                }
-                else
-                {
-                    distance = topHit;
-                }
-                points[i] += terrain.collider.ClosestPointOnBounds(rays[i].GetPoint(distance));
-            }
+                float pHit;
 
-            
-
+                Ray downRay = new Ray(rays[i].GetPoint(2 * getDiagSize(terrain.collider.bounds.size)), playerView.transform.up * -1);
+                p.Raycast(downRay, out pHit);
+                points[i] = downRay.GetPoint(pHit);
+            } else {
+                points[i] = rays[i].GetPoint(hits[i]);
+            }
         }
+        
         Mesh box = new Mesh();
         box.vertices = points;
         box.triangles = tris;
@@ -228,10 +214,11 @@ public class Minimap {
     public GameObject getViewBoxGameObject(Terrain terrain, Camera playerView, bool active = false, float width = 1.0f)
     {
         GameObject retval = new GameObject("MinimapBox");
+        
         retval.SetActive(active);
         //translate up a tad to stop z fighting
         //TODO: use a custom shader instead
-        retval.transform.Translate(0.0f, 0.1f, 0.0f);
+        //retval.transform.Translate(0.0f, 0.1f, 0.0f);
         retval.AddComponent<MeshFilter>();
         if (width == 0)
         {
@@ -326,6 +313,15 @@ public class Minimap {
         RenderTexture.active = prvActive;
         retval.Apply();
         return retval;
+    }
+    private float getDiagSize(Vector3 vec)
+    {
+        double retval = 0;
+        double x = (double)vec.x;
+        double y = (double)vec.y;
+        double z = (double)vec.z;
+        retval = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2) + Math.Pow(z, 2));
+        return (float)retval; 
     }
 }
 

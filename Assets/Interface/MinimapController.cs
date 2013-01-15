@@ -20,8 +20,8 @@ class MinimapController : MonoBehaviour
     void Start()
     {
 
-        m_minimap = new Minimap(GameObject.FindGameObjectWithTag("Player").collider.bounds);
-        m_minimap.OverheadObject.camera.orthographicSize = 20;
+        m_minimap = new Minimap();
+        
         //if the user has selected a rendertexture in the inspector to be the target
         //then use that one, otherwise make a new rendertexture and make it avalible
         //via the TargetTexture field
@@ -37,19 +37,24 @@ class MinimapController : MonoBehaviour
                 PlayerCamera = GetComponent<Camera>();
             }
         }
+        viewBox = m_minimap.getViewBoxGameObject(PlayerCamera, true, 30.0f);
     }
     void OnGUI()
     {
 
         GUILayout.BeginVertical();
-		GUILayout.Box("",GUILayout.Width(128), GUILayout.Height(128));
-		Graphics.DrawTexture(new Rect(0.0f, 0.0f, 128.0f, 128.0f), TargetTexture, new Material(Shader.Find("Unlit/Texture")));
+		//GUILayout.Box("",GUILayout.Width(128), GUILayout.Height(128));
+        
+		//Graphics.DrawTexture(new Rect(0.0f, 0.0f, 128.0f, 128.0f), TargetTexture, new Material(Shader.Find("Unlit/Texture")));
+        GUI.DrawTexture(new Rect(0.0f, 0.0f, 128.0f, 128.0f), TargetTexture, ScaleMode.StretchToFill, false);
 		GUILayout.EndVertical();
 		
     }
     void Update()
     {
-        m_minimap.OverheadObject.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position + new Vector3(0, 150, 0);
+        m_minimap.OverheadObject.transform.position = transform.position + new Vector3(0, 150, 0);
+        m_minimap.updateViewBoxGameObject(ref viewBox, PlayerCamera, 30.0f);
+
     }
 }
 
