@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public event ClickEventHandler SendCommand;
     private BasicController m_selectedUnit;
     public Camera playerView;
+    private Minimap minimap;
+    private GameObject viewBox;
     public BasicController SelectedUnit
     {
         get
@@ -37,11 +39,20 @@ public class Player : MonoBehaviour
         {
             playerView = GetComponent<Camera>();
         }
+        minimap = new Minimap();
         TownCenter center = new TownCenter();
         center.CreateUnit(this, startPos, Quaternion.identity);
     }
     void Update()
     {
+        if (viewBox == null)
+        {
+            viewBox = minimap.getViewBoxGameObject(playerView, true, 30.0f);
+        }
+        else
+        {
+            minimap.updateViewBoxGameObject(ref viewBox, playerView, 30.0f);
+        }
         if (Input.GetButtonDown("IssueCommand"))
         {
             if (SelectedUnit != null)
@@ -55,7 +66,7 @@ public class Player : MonoBehaviour
         {
             if (SendCommand != null)
             {
-                SendCommand(this, new ClickEventArgs(Input.mousePosition));
+                SendCommand(this, new ClickEventArgs(Input.mousePosition, playerView));
             }
         }
     }
@@ -72,7 +83,10 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        
+        GUI.DrawTexture(new Rect(128, 0, 128, 128), minimap.Image, ScaleMode.StretchToFill, false);
         GUILayout.BeginVertical();
+        
         GUILayout.Label("Food: " + HarvestedResources.Food);
         GUILayout.Label("Gold: " + HarvestedResources.Gold);
         GUILayout.Label("Stone: " + HarvestedResources.Stone);

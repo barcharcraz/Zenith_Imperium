@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Events
 {
@@ -11,8 +12,14 @@ namespace Events
         public float mouseX;
         public float mouseY;
         public UnityEngine.Vector3 worldPos;
-        public ClickEventArgs(UnityEngine.Vector3 mousePos) : this(mousePos, new UnityEngine.Vector3()) {}
-        public ClickEventArgs(UnityEngine.Vector3 mousePos, UnityEngine.Camera cam) : this(mousePos, cam.ScreenToWorldPoint(mousePos)) { }
+        public ClickEventArgs(UnityEngine.Vector3 mousePos, UnityEngine.Camera cam)
+        {
+            mouseX = mousePos.x;
+            mouseY = mousePos.y;
+            RaycastHit hit;
+            UnityEngine.Physics.Raycast(cam.ScreenPointToRay(mousePos), out hit);
+            worldPos = hit.point;
+        }
         public ClickEventArgs(UnityEngine.Vector3 mousePos, UnityEngine.Vector3 wpos)
         {
             mouseX = mousePos.x;

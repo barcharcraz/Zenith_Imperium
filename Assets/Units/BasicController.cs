@@ -20,7 +20,7 @@ public abstract class BasicController : MonoBehaviour
     void OnMouseDown()
     {
 
-        //SelectionBox.transform.localScale = collider.bounds.size;
+        //SelectionBox.traensform.localScale = collider.bounds.size;
         Owner.SelectedUnit = this;
     }
     public virtual void OnDeselect()
