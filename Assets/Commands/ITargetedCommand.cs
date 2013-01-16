@@ -7,6 +7,6 @@ namespace Commands
 {
     interface ITargetedCommand<T> : ICommand
     {
-        void exec(UnitController controller, T target);
+        void exec(BasicController controller, T target);
     }
 }

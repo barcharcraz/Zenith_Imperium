@@ -41,7 +41,7 @@ namespace Commands
             
         }
 
-        public void exec(UnitController controller, Vector3 target)
+        public void exec(BasicController controller, Vector3 target)
         {
             controller.GetComponent<NavMeshAgent>().SetDestination(target);
         }
