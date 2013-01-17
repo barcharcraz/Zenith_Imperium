@@ -13,7 +13,7 @@ namespace Commands
         private ClickEventHandler m_handler;
         public Move()
         {
-            m_handler = waitForInput;
+            m_handler = WaitForInput;
         }
         public string Name
         {
@@ -25,7 +25,7 @@ namespace Commands
             m_controller = controller;
             controller.Owner.SendCommand += m_handler;
         }
-        private void waitForInput(object sender, ClickEventArgs e)
+        private void WaitForInput(object sender, ClickEventArgs e)
         {
             try
             {

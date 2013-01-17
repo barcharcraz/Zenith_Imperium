@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Units.MapFeatures;
 using Events;
 using Units;
 
@@ -23,7 +24,17 @@ namespace Commands
 
             }
         }
-        IEnumerator doHarvest(ResourceController source, Pe)
+        IEnumerator doHarvest(ResourceNode source, PeonInfo peon)
+        {
+            if (peon.StoredResources >= peon.harvestAmount)
+            {
+                //TODO: go and return the resources
+            }
+            else
+            {
+                peon.StoredResources += 
+            }
+        }
         public string Name
         {
             get { return "Harvest"; }

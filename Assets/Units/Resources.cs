@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 public struct Resources
 {
     public int Food { get; set; }
@@ -11,7 +12,14 @@ public struct Resources
     public int Tin { get; set; }
     public int Bronze { get; set; }
 
-    public static Resources operator-(Resources lhs, Resources rhs)
+    public int Sum()
+    {
+        int retval = 0;
+        retval = Food + Gold + Stone + Copper + Tin + Bronze;
+        return retval;
+    }
+
+    public static Resources operator -(Resources lhs, Resources rhs)
     {
         Resources retval = new Resources();
         retval.Food = lhs.Food - rhs.Food;
@@ -22,7 +30,8 @@ public struct Resources
         retval.Bronze = lhs.Bronze - rhs.Bronze;
         return retval;
     }
-    public static Resources operator+(Resources lhs, Resources rhs)
+
+    public static Resources operator +(Resources lhs, Resources rhs)
     {
         Resources retval = new Resources();
         retval.Food = lhs.Food + rhs.Food;
@@ -32,5 +41,34 @@ public struct Resources
         retval.Tin = lhs.Stone + rhs.Stone;
         retval.Bronze = lhs.Bronze + rhs.Bronze;
         return retval;
+    }
+
+    public static bool operator >(Resources lhs, Resources rhs)
+    {
+        return lhs.Sum() > rhs.Sum();
+    }
+
+    public static bool operator <(Resources lhs, Resources rhs)
+    {
+        return lhs.Sum() < rhs.Sum();
+    }
+
+    public static bool operator >=(Resources lhs, Resources rhs)
+    {
+        return lhs.Sum() >= rhs.Sum();
+    }
+
+    public static bool operator <=(Resources lhs, Resources rhs)
+    {
+        return lhs.Sum() <= rhs.Sum();
+    }
+    public static bool operator >=(Resources lhs, float rhs)
+    {
+        return lhs.Sum() >= rhs;
+    }
+
+    public static bool operator <=(Resources lhs, float rhs)
+    {
+        return lhs.Sum() <= rhs;
     }
 }
