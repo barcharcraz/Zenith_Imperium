@@ -107,12 +107,10 @@ public class Resources
     public static Resources operator +(Resources lhs, Resources rhs)
     {
         Resources retval = new Resources();
-        retval.Food = lhs.Food + rhs.Food;
-        retval.Gold = lhs.Gold + rhs.Gold;
-        retval.Stone = lhs.Stone + rhs.Stone;
-        retval.Copper = lhs.Stone + rhs.Stone;
-        retval.Tin = lhs.Stone + rhs.Stone;
-        retval.Bronze = lhs.Bronze + rhs.Bronze;
+        for (int i = 0; i < retval.ResourceArray.Length; i++)
+        {
+            retval.ResourceArray[i] = lhs.ResourceArray[i] + rhs.ResourceArray[i];
+        }
         return retval;
     }
 

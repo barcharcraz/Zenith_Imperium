@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Units.Buildings
 {
-    class TownCenter : UnitInfo
+    class TownCenter : UnitInfo, IResourceDrop
     {
         public TownCenter()
         {

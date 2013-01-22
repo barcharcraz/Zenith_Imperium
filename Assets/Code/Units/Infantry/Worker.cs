@@ -16,6 +16,7 @@ namespace Units.Infantry
             Prefab = UnityEngine.Resources.Load("Units/Worker") as UnityEngine.GameObject;
             UnitCommands.Add(new Commands.Move());
             UnitCommands.Add(new Commands.Harvest());
+            UnitCommands.Add(new Commands.Return());
         }
     }
 }
