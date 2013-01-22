@@ -26,7 +26,7 @@ namespace Commands
         }
         IEnumerator doHarvest(ResourceController sourceCont, BasicController peonCont)
         {
-            ResourceNode source = sourceCont.Info;
+            ResourceNodeInfo source = sourceCont.Info;
             PeonInfo peon = peonCont.Info as PeonInfo;
             if (peon.StoredResources < peon.harvestAmount)
             {

@@ -6,12 +6,17 @@ using Units.MapFeatures;
 using System.Text;
 
 
-public class ResourceController : MonoBehaviour
+public class ResourceController : BasicController
 {
-    
-    public ResourceNode Info;
+
+    public override ResourceNodeInfo Info { get; set; }
     public ResourceController()
     {
-        Info = new ResourceNode();
+        Info = new ResourceNodeInfo();
+    }
+
+    public override void OnIssueCommand(Vector3 pos)
+    {
+        
     }
 }

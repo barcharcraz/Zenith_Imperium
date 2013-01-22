@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Units.MapFeatures
 {
-    public class ResourceNode : UnitInfo
+    public class ResourceNodeInfo : UnitInfo
     {
         public Resources CurrentResources;
-        public ResourceNode()
+        public ResourceNodeInfo()
         {
             CurrentResources = new Resources();
         }
