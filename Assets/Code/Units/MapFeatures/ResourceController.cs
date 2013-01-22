@@ -5,14 +5,22 @@ using UnityEngine;
 using Units.MapFeatures;
 using System.Text;
 
-
+[Serializable]
 public class ResourceController : BasicController
 {
-
-    public override ResourceNodeInfo Info { get; set; }
+    [SerializeField]
+    private ResourceNodeInfo m_info;
+    public ResourceNodeInfo Info
+    {
+        get { return m_info; }
+        set { m_info = value; }
+    }
     public ResourceController()
     {
-        Info = new ResourceNodeInfo();
+        if (Info == null)
+        {
+            Info = new ResourceNodeInfo();
+        }
     }
 
     public override void OnIssueCommand(Vector3 pos)

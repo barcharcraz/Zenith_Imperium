@@ -7,7 +7,7 @@ namespace Units
 {
     public class PeonInfo : UnitInfo
     {
-        public Resources StoredResources;
+        public Resources StoredResources = new Resources();
         public float HarvestRate; //rate of harvesting in one resource per harvestRate seconds
         public float harvestAmount;
     }

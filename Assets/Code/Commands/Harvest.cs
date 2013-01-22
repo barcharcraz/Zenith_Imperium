@@ -28,7 +28,7 @@ namespace Commands
         {
             ResourceNodeInfo source = sourceCont.Info;
             PeonInfo peon = peonCont.Info as PeonInfo;
-            if (peon.StoredResources < peon.harvestAmount)
+            while (peon.StoredResources < peon.harvestAmount)
             {
                 Resources load = source.CurrentResources.GetResources(1);
                 peon.StoredResources += load;

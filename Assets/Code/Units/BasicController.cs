@@ -8,7 +8,12 @@ using Units;
 
 public abstract class BasicController : MonoBehaviour
 {
-    public virtual UnitInfo Info { get; set; }
+    private UnitInfo m_info;
+    public UnitInfo Info
+    {
+        get { return m_info; }
+        set { m_info = value; }
+    }
     public Player Owner { get; set; }
     private GameObject m_selectionBox;
     public abstract void OnIssueCommand(Vector3 pos);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEditor;
+using UnityEngine;
 
 [Serializable]
 public class Resources
@@ -17,9 +18,15 @@ public class Resources
         Tin,
         Bronze
     };
-    
-    public int[] ResourceArray = new int[Enum.GetValues(typeof (ResourceTypes)).Length];
-
+    [SerializeField]
+    public int[] ResourceArray;
+    public Resources()
+    {
+        if (ResourceArray == null)
+        {
+            ResourceArray = new int[Enum.GetValues(typeof(ResourceTypes)).Length];
+        }
+    }
     public int Food
     {
         get { return ResourceArray[(int) ResourceTypes.Food]; }
