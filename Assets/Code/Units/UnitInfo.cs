@@ -9,7 +9,7 @@ namespace Units
     {
         public string Name;
         public Resources Cost;
-        public GameObject Prefab;
+        public virtual GameObject Prefab { get; set; }
         public List<ICommand> UnitCommands;
         public float Speed;
         public UnitInfo()
@@ -22,8 +22,8 @@ namespace Units
         {
             GameObject retval;
             retval = Object.Instantiate(Prefab, pos, rotation) as GameObject;
-            retval.GetComponent<UnitController>().Info = this;
-            retval.GetComponent<UnitController>().Owner = owner;
+            retval.GetComponent<BasicController>().Info = this;
+            retval.GetComponent<BasicController>().Owner = owner;
 
             
             return retval;

@@ -16,7 +16,9 @@ public abstract class BasicController : MonoBehaviour
     }
     public Player Owner { get; set; }
     private GameObject m_selectionBox;
-    public abstract void OnIssueCommand(Vector3 pos);
+
+    public virtual void OnIssueCommand(Vector3 pos) { }
+
     void Start()
     {
         

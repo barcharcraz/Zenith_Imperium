@@ -8,14 +8,21 @@ using UnityEngine;
 
 namespace Commands
 {
-    class Return : ITargetedCommand<IResourceDrop>
+    class Return : TargetedCommandImp<IResourceDrop>
     {
-        private ClickEventHandler m_handler;
-        public void exec(BasicController controller, IResourceDrop target)
+        public override void exec(BasicController controller, IResourceDrop target)
         {
             if (controller.Info is PeonInfo)
             {
                 PeonInfo info = controller.Info as PeonInfo;
+                Vector3 targetPos = (target as Component).transform.position;
+                NavMeshAgent agent = controller.GetComponent<NavMeshAgent>();
+                //if the controller has a navmesh agent then go ahead
+                //and try and move it to the drop point
+                if (agent != null)
+                {
+                    agent.destination = targetPos;
+                }
                 controller.Owner.HarvestedResources += info.StoredResources;
                 info.StoredResources -= info.StoredResources;
             }
@@ -25,33 +32,9 @@ namespace Commands
             }
         }
 
-        public string Name
+        public override string Name
         {
             get { return "Return"; }
-        }
-
-        public void exec(BasicController controller)
-        {
-            m_handler = (object sender, ClickEventArgs e) => Owner_SendCommand(sender, e, controller);
-            controller.Owner.SendCommand += m_handler;
-        }
-        void Owner_SendCommand(object sender, ClickEventArgs e, BasicController b)
-        {
-            Collider[] hits = Physics.OverlapSphere(e.worldPos, 1);
-            IResourceDrop cont = null;
-            foreach (Component c in hits)
-            {
-                if (c.GetComponent<BasicController>().Info is IResourceDrop)
-                {
-                    cont = c.GetComponent<BasicController>().Info as IResourceDrop;
-                    break;
-                }
-            }
-            if (cont != null)
-            {
-                exec(b,cont);
-                b.Owner.SendCommand -= m_handler;
-            }
         }
     }
 }

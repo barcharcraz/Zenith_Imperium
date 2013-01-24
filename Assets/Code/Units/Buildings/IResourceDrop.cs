@@ -6,7 +6,9 @@ using UnityEngine;
 
 namespace Units
 {
+    
     interface IResourceDrop
     {
+        
     }
 }
