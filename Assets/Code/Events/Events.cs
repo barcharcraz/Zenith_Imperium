@@ -7,8 +7,10 @@ using UnityEngine;
 namespace Events
 {
     public delegate void ClickEventHandler(object sender, ClickEventArgs e);
-    public sealed class ClickEventArgs
+    
+    public sealed class ClickEventArgs : EventArgs
     {
+        
         public float mouseX;
         public float mouseY;
         public UnityEngine.Vector3 worldPos;

@@ -8,8 +8,8 @@ using Units;
 
 public abstract class BasicController : MonoBehaviour
 {
-    private UnitInfo m_info;
-    public UnitInfo Info
+    private IUnitInfo m_info;
+    public IUnitInfo Info
     {
         get { return m_info; }
         set { m_info = value; }

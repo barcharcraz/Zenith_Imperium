@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using Events;
 using System.Text;
+using System.Collections;
 using Units;
 using UnityEngine;
 
 namespace Commands
 {
-    class Return : TargetedCommandImp<IResourceDrop>
+    class Return : TargetedCommandImp<IResourceDrop, UnitController>
     {
-        public override void exec(BasicController controller, IResourceDrop target)
+        public override void exec(UnitController controller, IResourceDrop target)
+        {
+            controller.StartCoroutine(coReturn(controller, target));
+        }
+        private IEnumerator coReturn(UnitController controller, IResourceDrop target)
         {
             if (controller.Info is PeonInfo)
             {
                 PeonInfo info = controller.Info as PeonInfo;
                 Vector3 targetPos = (target as Component).transform.position;
-                NavMeshAgent agent = controller.GetComponent<NavMeshAgent>();
+                yield return controller.StartCoroutine(controller.coMoveTo(targetPos, base.Deltad));
                 //if the controller has a navmesh agent then go ahead
                 //and try and move it to the drop point
-                if (agent != null)
-                {
-                    agent.destination = targetPos;
-                }
                 controller.Owner.HarvestedResources += info.StoredResources;
                 info.StoredResources -= info.StoredResources;
             }
@@ -30,8 +31,8 @@ namespace Commands
             {
                 throw new InvalidOperationException("the return command can only be added to Peons");
             }
+            
         }
-
         public override string Name
         {
             get { return "Return"; }

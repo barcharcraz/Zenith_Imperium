@@ -10,10 +10,10 @@ using Units;
 
 namespace Commands
 {
-    class Harvest : TargetedCommandImp<ResourceController>
+    public class Harvest : TargetedCommandImp<ResourceController, UnitController>
     {
-        
-        public override void exec(BasicController controller, ResourceController target)
+        private const float DELTAD = 30;
+        public override void exec(UnitController controller, ResourceController target)
         {
             if (!(controller.Info is PeonInfo))
             {
@@ -22,18 +22,27 @@ namespace Commands
             else
             {
                 controller.StartCoroutine(doHarvest(target, controller));
+                
             }
         }
-        IEnumerator doHarvest(ResourceController sourceCont, BasicController peonCont)
+        IEnumerator doHarvest(ResourceController sourceCont, UnitController peonCont)
         {
-            ResourceNodeInfo source = sourceCont.Info;
-            PeonInfo peon = peonCont.Info as PeonInfo;
-            while (peon.StoredResources < peon.harvestAmount)
+            //wait until the peon is in the right position to actually
+            //start harvesting
+            while (!peonCont.moveTo(sourceCont.transform.position, DELTAD))
             {
-                Resources load = source.CurrentResources.GetResources(1);
-                peon.StoredResources += load;
-                source.CurrentResources -= load;
-                yield return new WaitForSeconds(peon.HarvestRate);
+                yield return null;
+            }
+            {
+                ResourceNodeInfo source = sourceCont.Info;
+                PeonInfo peon = peonCont.Info as PeonInfo;
+                while (peon.StoredResources < peon.harvestAmount)
+                {
+                    Resources load = source.CurrentResources.GetResources(1);
+                    peon.StoredResources += load;
+                    source.CurrentResources -= load;
+                    yield return new WaitForSeconds(peon.HarvestRate);
+                }
             }
         }
 

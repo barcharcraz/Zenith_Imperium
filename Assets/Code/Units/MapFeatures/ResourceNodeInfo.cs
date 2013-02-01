@@ -6,7 +6,7 @@ using System.Text;
 namespace Units.MapFeatures
 {
     [Serializable]
-    public class ResourceNodeInfo : UnitInfo
+    public class ResourceNodeInfo : UnitInfo<BasicController>
     {
         public Resources CurrentResources;
         public ResourceNodeInfo()

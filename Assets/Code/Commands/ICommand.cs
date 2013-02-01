@@ -11,9 +11,9 @@ namespace Commands
     /// a command is something that will appear on a button and or
     /// in a unit's command card
     /// </summary>
-    public interface ICommand
+    public interface ICommand<T> : ICommandBase where T : BasicController
     {
-        string Name { get; }
-        void exec(BasicController controller);
+        
+        void exec(T controller);
     }
 }

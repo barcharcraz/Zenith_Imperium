@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         if (SelectedUnit != null)
         {
             
-            foreach (ICommand c in SelectedUnit.Info.UnitCommands)
+            foreach (ICommandBase c in SelectedUnit.Info.UnitCommands)
             {
                 if (GUILayout.Button(c.Name))
                 {

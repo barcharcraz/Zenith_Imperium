@@ -7,18 +7,21 @@ using UnityEngine;
 
 namespace Commands
 {
-    public class ProduceUnit : ICommand
+    public class ProduceUnit<T> : ICommand<BasicController> where T : IUnitInfo, new()
     {
-        private UnitInfo m_unit;
+        private T m_unit;
 
-        public ProduceUnit(UnitInfo unit)
+        public ProduceUnit(T unit)
         {
             m_unit = unit;
         }
-
+        public ProduceUnit()
+        {
+            m_unit = new T();
+        }
         public void exec(BasicController controller)
         {
-            controller.Owner.HarvestedResources -= m_unit.Cost;
+            
             m_unit.CreateUnit(controller.Owner, controller.transform.position + new Vector3(10,0,0), Quaternion.identity);
             
         }

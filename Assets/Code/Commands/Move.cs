@@ -7,20 +7,20 @@ using UnityEngine;
 using Events;
 namespace Commands
 {
-    class Move : ITargetedCommand<Vector3>
+    class Move : Command<UnitController>, ITargetedCommand<Vector3, UnitController>
     {
-        private BasicController m_controller;
+        private UnitController m_controller;
         private ClickEventHandler m_handler;
         public Move()
         {
             m_handler = WaitForInput;
         }
-        public string Name
+        public override string Name
         {
             get { return "Move"; }
         }
 
-        public void exec(BasicController controller)
+        public override void exec(UnitController controller)
         {
             m_controller = controller;
             controller.Owner.SendCommand += m_handler;
@@ -28,21 +28,12 @@ namespace Commands
         }
         private void WaitForInput(object sender, ClickEventArgs e)
         {
-            try
-            {
-                m_controller.GetComponent<NavMeshAgent>().SetDestination(e.worldPos);
-                
-                
-            }
-            catch (NullReferenceException)
-            {
-                throw new System.InvalidOperationException("Unit Controllers for movable units must have a navmeshagent component");
-            }
+            m_controller.moveTo(e.worldPos, 0);
             m_controller.Owner.SendCommand -= m_handler;
             
         }
 
-        public void exec(BasicController controller, Vector3 target)
+        public void exec(UnitController controller, Vector3 target)
         {
             controller.GetComponent<NavMeshAgent>().SetDestination(target);
         }

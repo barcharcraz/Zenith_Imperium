@@ -6,8 +6,9 @@ using System.Text;
 
 namespace Commands
 {
-    interface ITargetedCommand<T> : ICommand
+    interface ITargetedCommand<T,U> : ICommand<U> where U : BasicController
     {
-        void exec(BasicController controller, T target);
+        
+        void exec(U controller, T target);
     }
 }

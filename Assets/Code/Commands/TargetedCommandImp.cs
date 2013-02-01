@@ -8,17 +8,21 @@ using UnityEngine;
 
 namespace Commands
 {
-    abstract class TargetedCommandImp<T> : ITargetedCommand<T> where T : class
+    public abstract class TargetedCommandImp<T,U> : Command<U>, ITargetedCommand<T,U> where T : class where U : BasicController
     {
+        protected float Deltad
+        {
+            get { return 10; }
+        }
         protected ClickEventHandler m_handler;
-        public void exec(BasicController controller)
+        public override void exec(U controller)
         {
             //bind the handler to a compitible type by supplying the final
             //argument from our argument list
             m_handler = (object sender, ClickEventArgs e) => Owner_SendCommand(sender, e, controller);
             controller.Owner.SendCommand += m_handler;
         }
-        protected virtual void Owner_SendCommand(object sender, ClickEventArgs e, BasicController b)
+        protected virtual void Owner_SendCommand(object sender, ClickEventArgs e, U b)
         {
 
             //Find things near where the player clicked
@@ -43,8 +47,8 @@ namespace Commands
                 b.Owner.SendCommand -= m_handler;
             }
         }
-        public abstract void exec(BasicController controller, T target);
+        public abstract void exec(U controller, T target);
 
-        public abstract string Name { get; }
+        public override abstract string Name { get; }
     }
 }

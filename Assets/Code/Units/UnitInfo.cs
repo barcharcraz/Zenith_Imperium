@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Commands;
@@ -5,26 +6,32 @@ using Commands;
 
 namespace Units
 {
-    public class UnitInfo
+    
+    public class UnitInfo<T> : IUnitInfo where T : BasicController
     {
-        public string Name;
+        public string Name { get; set; }
+        public List<ICommandBase> UnitCommands
+        {
+            get { return m_unitCommands; }
+            set { m_unitCommands = value; }
+        }
         public Resources Cost;
         public virtual GameObject Prefab { get; set; }
-        public List<ICommand> UnitCommands;
+        public List<ICommandBase> m_unitCommands;
         public float Speed;
         public UnitInfo()
         {
             Cost = new Resources();
-            UnitCommands = new List<ICommand>();
+            UnitCommands = new List<ICommandBase>();
             Speed = 0;
         }
-        public virtual GameObject CreateUnit(Player owner, Vector3 pos, Quaternion rotation)
+        public GameObject CreateUnit(Player owner, Vector3 pos, Quaternion rotation)
         {
             GameObject retval;
-            retval = Object.Instantiate(Prefab, pos, rotation) as GameObject;
-            retval.GetComponent<BasicController>().Info = this;
-            retval.GetComponent<BasicController>().Owner = owner;
-
+            retval = UnityEngine.Object.Instantiate(Prefab, pos, rotation) as GameObject;
+            retval.GetComponent<T>().Info = this;
+            retval.GetComponent<T>().Owner = owner;
+            owner.HarvestedResources -= Cost;
             
             return retval;
         }
@@ -32,6 +39,5 @@ namespace Units
         {
             return CreateUnit(owner, pos, Quaternion.identity);
         }
-        
     }
 }
