@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Commands
 {
-    public class ProduceUnit<T> : ICommand<BasicController> where T : IUnitInfo, new()
+    public class ProduceUnit<T> : Command<BasicController> where T : IUnitInfo, new()
     {
         private T m_unit;
 
@@ -15,18 +15,24 @@ namespace Commands
         {
             m_unit = unit;
         }
-        public ProduceUnit()
+        public ProduceUnit() { }
+        public override void exec(BasicController controller)
         {
-            m_unit = new T();
-        }
-        public void exec(BasicController controller)
-        {
-            
+            if (m_unit == null)
+            {
+                m_unit = new T();
+            }
             m_unit.CreateUnit(controller.Owner, controller.transform.position + new Vector3(10,0,0), Quaternion.identity);
             
         }
-
-        public string Name
+        public override void initCommand()
+        {
+            if (m_unit == null)
+            {
+                m_unit = new T();
+            }
+        }
+        public override string Name
         {
             get { return m_unit.Name; }
         }

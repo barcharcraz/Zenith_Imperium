@@ -12,7 +12,7 @@ namespace Commands
 
         public abstract string Name { get; }
 
-
+        public virtual void initCommand() { }
         
         void ICommandBase.exec(BasicController controller)
         {

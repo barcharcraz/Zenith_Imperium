@@ -9,5 +9,6 @@ namespace Commands
     {
         string Name { get; }
         void exec(BasicController controller);
+        void initCommand();
     }
 }

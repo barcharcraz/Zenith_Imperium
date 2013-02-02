@@ -11,6 +11,7 @@ namespace Units
     {
         string Name { get; set; }
         List<ICommandBase> UnitCommands { get; set; }
-        GameObject CreateUnit(Player owner, Vector3 pos, Quaternion rotation);
+        GameObject CreateUnit(Player owner, Vector3 pos, Quaternion rotation, bool active = true);
+        
     }
 }
