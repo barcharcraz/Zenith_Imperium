@@ -7,7 +7,7 @@ using Commands;
 namespace Units
 {
     
-    public class UnitInfo<T> : IUnitInfo where T : BasicController
+    public class UnitInfo : IUnitInfo
     {
         public string Name { get; set; }
         public List<ICommandBase> UnitCommands
@@ -29,8 +29,8 @@ namespace Units
         {
             GameObject retval;
             retval = UnityEngine.Object.Instantiate(Prefab, pos, rotation) as GameObject;
-            retval.GetComponent<T>().Info = this;
-            retval.GetComponent<T>().Owner = owner;
+            retval.GetComponent<BasicController>().Info = this;
+            retval.GetComponent<BasicController>().Owner = owner;
             owner.HarvestedResources -= Cost;
             
             return retval;

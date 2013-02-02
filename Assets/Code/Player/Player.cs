@@ -10,7 +10,8 @@ using Events;
 
 public class Player : MonoBehaviour
 {
-    public event ClickEventHandler SendCommand;
+    public event MouseEventHandler SendCommand;
+    public event MouseEventHandler MouseMove;
     private BasicController m_selectedUnit;
     public Camera playerView;
     private Minimap minimap;
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
         {
             minimap.updateViewBoxGameObject(ref viewBox, playerView, 30.0f);
         }
+        //TODO: move the event dispatching code into methods
         if (Input.GetButtonDown("IssueCommand"))
         {
             if (SelectedUnit != null)
@@ -67,7 +69,15 @@ public class Player : MonoBehaviour
         {
             if (SendCommand != null)
             {
-                SendCommand(this, new ClickEventArgs(Input.mousePosition, playerView));
+                SendCommand(this, new MouseEventArgs(Input.mousePosition, playerView));
+            }
+        }
+        // detect mouse movement and fire the correct event
+        if (Input.GetAxis("Mouse X") > 0 || Input.GetAxis("Mouse Y") > 0)
+        {
+            if (MouseMove != null)
+            {
+                MouseMove(this, new MouseEventArgs(Input.mousePosition, playerView));
             }
         }
     }

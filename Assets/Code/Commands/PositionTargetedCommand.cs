@@ -11,13 +11,13 @@ namespace Commands
     {
 
 
-        protected ClickEventHandler m_handler;
+        protected MouseEventHandler m_handler;
         public override void exec(U controller)
         {
-            m_handler = (object sender, ClickEventArgs e) => Owner_SendCommand(sender, e, controller);
+            m_handler = (object sender, MouseEventArgs e) => Owner_SendCommand(sender, e, controller);
             controller.Owner.SendCommand += m_handler;
         }
-        protected virtual void Owner_SendCommand(object sender, ClickEventArgs e, U b)
+        protected virtual void Owner_SendCommand(object sender, MouseEventArgs e, U b)
         {
             exec(b, e.worldPos);
             b.Owner.SendCommand -= m_handler;

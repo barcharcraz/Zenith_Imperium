@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Units.Infantry
 {
-    class Warrior : UnitInfo<UnitController>
+    class Warrior : UnitInfo
     {
         public Warrior()
         {

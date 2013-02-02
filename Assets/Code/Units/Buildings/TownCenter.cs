@@ -8,7 +8,7 @@ using Units.Infantry;
 
 namespace Units.Buildings
 {
-    class TownCenter : UnitInfo<BasicController>, IResourceDrop
+    class TownCenter : UnitInfo, IResourceDrop
     {
         public TownCenter()
         {

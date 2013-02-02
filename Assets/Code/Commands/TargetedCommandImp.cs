@@ -14,15 +14,15 @@ namespace Commands
         {
             get { return 10; }
         }
-        protected ClickEventHandler m_handler;
+        protected MouseEventHandler m_handler;
         public override void exec(U controller)
         {
             //bind the handler to a compitible type by supplying the final
             //argument from our argument list
-            m_handler = (object sender, ClickEventArgs e) => Owner_SendCommand(sender, e, controller);
+            m_handler = (object sender, MouseEventArgs e) => Owner_SendCommand(sender, e, controller);
             controller.Owner.SendCommand += m_handler;
         }
-        protected virtual void Owner_SendCommand(object sender, ClickEventArgs e, U b)
+        protected virtual void Owner_SendCommand(object sender, MouseEventArgs e, U b)
         {
 
             //Find things near where the player clicked

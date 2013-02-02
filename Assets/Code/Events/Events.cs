@@ -6,15 +6,16 @@ using UnityEngine;
 
 namespace Events
 {
-    public delegate void ClickEventHandler(object sender, ClickEventArgs e);
-    
-    public sealed class ClickEventArgs : EventArgs
+    public delegate void MouseEventHandler(object sender, MouseEventArgs e);
+
+
+    public class MouseEventArgs : EventArgs
     {
         
         public float mouseX;
         public float mouseY;
         public UnityEngine.Vector3 worldPos;
-        public ClickEventArgs(UnityEngine.Vector3 mousePos, UnityEngine.Camera cam)
+        public MouseEventArgs(UnityEngine.Vector3 mousePos, UnityEngine.Camera cam)
         {
             mouseX = mousePos.x;
             mouseY = mousePos.y;
@@ -22,7 +23,7 @@ namespace Events
             UnityEngine.Physics.Raycast(cam.ScreenPointToRay(mousePos), out hit);
             worldPos = hit.point;
         }
-        public ClickEventArgs(UnityEngine.Vector3 mousePos, UnityEngine.Vector3 wpos)
+        public MouseEventArgs(UnityEngine.Vector3 mousePos, UnityEngine.Vector3 wpos)
         {
             mouseX = mousePos.x;
             mouseY = mousePos.y;

@@ -10,7 +10,7 @@ namespace Commands
     class Move : Command<UnitController>, ITargetedCommand<Vector3, UnitController>
     {
         private UnitController m_controller;
-        private ClickEventHandler m_handler;
+        private MouseEventHandler m_handler;
         public Move()
         {
             m_handler = WaitForInput;
@@ -26,7 +26,7 @@ namespace Commands
             controller.Owner.SendCommand += m_handler;
             
         }
-        private void WaitForInput(object sender, ClickEventArgs e)
+        private void WaitForInput(object sender, MouseEventArgs e)
         {
             m_controller.moveTo(e.worldPos, 0);
             m_controller.Owner.SendCommand -= m_handler;
