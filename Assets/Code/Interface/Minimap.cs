@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
-
+using ExtensionMethods;
 
 
 public class Minimap {
@@ -27,22 +27,22 @@ public class Minimap {
     {
         get { return m_overheadObject; }
     }
-	/// <summary>
-	/// Initializes a new instance of the <see cref="Minimap"/> class.
-	/// 
-	/// This constructor creates a new render texture that, by default is 128x128x24.
-	/// In addition this will set the position and view size of the new camera to cover the
-	/// whole of the first terrain in the scene. If you want to position the minimap Camera someplace
-	/// else use one of the constructors with a bounds argument.
-	/// </summary>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Minimap"/> class.
+    /// 
+    /// This constructor creates a new render texture that, by default is 128x128x24.
+    /// In addition this will set the position and view size of the new camera to cover the
+    /// whole of the first terrain in the scene. If you want to position the minimap Camera someplace
+    /// else use one of the constructors with a bounds argument.
+    /// </summary>
     public Minimap()
     {
         initalize(new RenderTexture(DEF_WIDTH, DEF_HEIGHT, DEF_DEPTH), getFirstTerrainBounds());
     }
-	public Minimap(RenderTexture texture)
-	{
-		initalize(texture, getFirstTerrainBounds());
-	}
+    public Minimap(RenderTexture texture)
+    {
+        initalize(texture, getFirstTerrainBounds());
+    }
     public Minimap(RenderTexture target, Bounds targetArea)
     {
         initalize(target, targetArea);
@@ -69,7 +69,7 @@ public class Minimap {
         m_overhead.clearFlags = CameraClearFlags.SolidColor;
         m_overhead.orthographic = true;
         m_overhead.transform.position = targetArea.center;
-        m_overhead.orthographicSize = getMaxComponent(targetArea.extents);
+        m_overhead.orthographicSize = targetArea.extents.GetMaxComponent();
     }
     /// <summary>
     /// Gets a Mesh that covers the plane where the viewing frustum
@@ -83,7 +83,7 @@ public class Minimap {
     /// <returns></returns>
     public Mesh getViewBoxMesh(Terrain terrain, Camera playerView)
     {
-		
+        
         Ray[] rays = new Ray[4];
         float[] hits = new float[4];
         Vector3[] points = new Vector3[4];
@@ -95,7 +95,7 @@ public class Minimap {
 
         
         int[] tris = { 0, 3, 2, 2, 1, 0 };
-		
+        
         for (int i = 0; i < rays.Length; i++)
         {
             rays[i] = playerView.ViewportPointToRay(viewPortPoints[i]);
@@ -152,35 +152,35 @@ public class Minimap {
         {
             angles[i] = 360f - angles[i];
             angles[i] /= 2;
-			angles[i]*=-1;
+            angles[i]*=-1;
         }
         //calculate the outer points
-		for(int i = 0; i<4; i++)
-		{
-			int im1 = i-1; //i minus 1 with wrapping
-			if(im1 < 0)
-			{
-				im1 = 3;
-			}
-			int ip1 = i+1; //i plus 1 with wrapping
-			if(ip1 > 3)
-			{
-				ip1 = 0;
-			}
-			int j = i+4; // the index of the outer vert
-			Vector3 a = newPoints[im1] - newPoints[i];// this is the vectore we are rotating from
-	        Vector3 b = newPoints[ip1] - newPoints[i]; //this is the vector we are rotating toward
-	        Quaternion q = Quaternion.AngleAxis(angles[i], Vector3.Cross(a, b));
-	        newPoints[j] = q * a.normalized;
-	        newPoints[j] *= width;
-			newPoints[j] += newPoints[i];
-		}
-		
+        for(int i = 0; i<4; i++)
+        {
+            int im1 = i-1; //i minus 1 with wrapping
+            if(im1 < 0)
+            {
+                im1 = 3;
+            }
+            int ip1 = i+1; //i plus 1 with wrapping
+            if(ip1 > 3)
+            {
+                ip1 = 0;
+            }
+            int j = i+4; // the index of the outer vert
+            Vector3 a = newPoints[im1] - newPoints[i];// this is the vectore we are rotating from
+            Vector3 b = newPoints[ip1] - newPoints[i]; //this is the vector we are rotating toward
+            Quaternion q = Quaternion.AngleAxis(angles[i], Vector3.Cross(a, b));
+            newPoints[j] = q * a.normalized;
+            newPoints[j] *= width;
+            newPoints[j] += newPoints[i];
+        }
         
-		int[] newTris = {0, 1, 5, 5, 4, 0, 1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 3, 0, 4, 4, 7, 3};
+        
+        int[] newTris = {0, 1, 5, 5, 4, 0, 1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 3, 0, 4, 4, 7, 3};
         retval.vertices = newPoints;
         retval.triangles = newTris;
-		
+        
         retval.RecalculateNormals();
         return retval;
         
@@ -253,49 +253,15 @@ public class Minimap {
         gobj.GetComponent<MeshFilter>().mesh = getViewBoxMesh(getFirstTerrain(), playerView, width);
     }
     
-    /// <summary>
-    /// gets the max component of a vector
-    /// </summary>
-    /// <param name="vec">the vector to get data from</param>
-    /// <returns>the value of the biggest component of the vector</returns>
-    private float getMaxComponent(Vector3 vec)
+    
+    
+    private Bounds getFirstTerrainBounds()
     {
-        float retval = vec.x;
-        if (vec.y > retval)
-        {
-            retval = vec.y;
-        }
-        if (vec.z > retval)
-        {
-            retval = vec.z;
-        }
+        Bounds retval;
+        Component terrain = UnityEngine.Object.FindObjectOfType(typeof(Terrain)) as Component;
+        retval = terrain.collider.bounds;
         return retval;
     }
-    /// <summary>
-    /// get the smallest component in Vector3 <paramref name="vec"/>
-    /// </summary>
-    /// <param name="vec">the vector to calculate the smallest component of</param>
-    /// <returns>the value of the smallest component of the vector</returns>
-    private float getMinComponent(Vector3 vec)
-    {
-        float retval = vec.x;
-        if (vec.y < retval)
-        {
-            retval = vec.y;
-        }
-        if (vec.z < retval)
-        {
-            retval = vec.z;
-        }
-        return retval;
-    }
-	private Bounds getFirstTerrainBounds()
-	{
-		Bounds retval;
-		Component terrain = UnityEngine.Object.FindObjectOfType(typeof(Terrain)) as Component;
-		retval = terrain.collider.bounds;
-		return retval;
-	}
     private Terrain getFirstTerrain()
     {
         Terrain retval;

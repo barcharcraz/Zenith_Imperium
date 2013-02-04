@@ -24,12 +24,7 @@ public abstract class BasicController : MonoBehaviour
         
         initSelectionBox();
     }
-    void OnMouseDown()
-    {
 
-        //SelectionBox.traensform.localScale = collider.bounds.size;
-        Owner.SelectedUnit = this;
-    }
     public virtual void OnDeselect()
     {
         m_selectionBox.SetActive(false);

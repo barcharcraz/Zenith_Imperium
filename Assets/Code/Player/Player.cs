@@ -8,28 +8,54 @@ using Units.Buildings;
 using Commands;
 using Events;
 
+
 public class Player : MonoBehaviour
 {
     public event MouseEventHandler SendCommand;
     public event MouseEventHandler MouseMove;
-    private BasicController m_selectedUnit;
+    private List<BasicController> m_selectedUnits;
+    private SelectionManager m_selectionManager;
     public Camera playerView;
     private Minimap minimap;
     private GameObject viewBox;
+
+    public List<BasicController> SelectedUnits
+    {
+        get { return m_selectedUnits; }
+        set
+        {
+            if (m_selectedUnits != null)
+            {
+                foreach (BasicController cont in m_selectedUnits)
+                {
+                    cont.OnDeselect();
+                }
+            }
+            m_selectedUnits = value;
+            foreach (BasicController cont in m_selectedUnits)
+            {
+                cont.OnSelect();
+            }
+        }
+    }
+
+    ///-------------------------------------------------------------------------------------------------
+    /// <summary>   gets or sets the last selected unit </summary>
+    ///
+    /// <value> the last selected unit </value>
+    ///-------------------------------------------------------------------------------------------------
     public BasicController SelectedUnit
     {
         get
         {
-            return m_selectedUnit;
-        }
-        set
-        {
-            if (m_selectedUnit != null)
+            if (SelectedUnits != null && SelectedUnits.Count > 0)
             {
-                m_selectedUnit.OnDeselect();
+                return m_selectedUnits[m_selectedUnits.Count-1];
             }
-            m_selectedUnit = value;
-            m_selectedUnit.OnSelect();
+            else
+            {
+                return null;
+            }
         }
     }
     public Resources HarvestedResources { get; set; }
@@ -44,6 +70,7 @@ public class Player : MonoBehaviour
         minimap = new Minimap();
         TownCenter center = new TownCenter();
         center.CreateUnit(this, startPos, Quaternion.identity);
+        m_selectionManager = new SelectionManager(this);
     }
     void Update()
     {
@@ -55,23 +82,35 @@ public class Player : MonoBehaviour
         {
             minimap.updateViewBoxGameObject(ref viewBox, playerView, 30.0f);
         }
-        //TODO: move the event dispatching code into methods
+
+        DispatchCommands();
+    }
+    
+    private void DispatchCommands()
+    {
         if (Input.GetButtonDown("IssueCommand"))
         {
-            if (SelectedUnit != null)
+            if (SelectedUnits != null)
             {
                 RaycastHit hit = new RaycastHit();
-				Physics.Raycast(playerView.ScreenPointToRay(Input.mousePosition), out hit);
-                SelectedUnit.OnIssueCommand(hit.point);
+                Physics.Raycast(playerView.ScreenPointToRay(Input.mousePosition), out hit);
+                foreach (BasicController cont in SelectedUnits)
+                {
+                    cont.OnIssueCommand(hit.point);
+                }
             }
         }
         if (Input.GetButtonDown("Select"))
         {
+            // Send command is not null so somebody is waiting for a command target
+            // in this case the select button is more like a select target button
             if (SendCommand != null)
             {
                 SendCommand(this, new MouseEventArgs(Input.mousePosition, playerView));
             }
+            
         }
+
         // detect mouse movement and fire the correct event
         if (Input.GetAxis("Mouse X") > 0 || Input.GetAxis("Mouse Y") > 0)
         {
@@ -80,12 +119,15 @@ public class Player : MonoBehaviour
                 MouseMove(this, new MouseEventArgs(Input.mousePosition, playerView));
             }
         }
+        
     }
     void OnGUI()
     {
+
+        m_selectionManager.HandleInput();
         if (SelectedUnit != null)
         {
-            
+
             foreach (ICommandBase c in SelectedUnit.Info.UnitCommands)
             {
                 if (GUILayout.Button(c.Name))
@@ -97,7 +139,6 @@ public class Player : MonoBehaviour
         
         GUI.DrawTexture(new Rect(128, 0, 128, 128), minimap.Image, ScaleMode.StretchToFill, false);
         GUILayout.BeginVertical();
-        
         GUILayout.Label("Food: " + HarvestedResources.Food);
         GUILayout.Label("Gold: " + HarvestedResources.Gold);
         GUILayout.Label("Stone: " + HarvestedResources.Stone);
@@ -105,6 +146,8 @@ public class Player : MonoBehaviour
         GUILayout.Label("Copper: " + HarvestedResources.Copper);
         GUILayout.Label("Bronze: " + HarvestedResources.Bronze);
         GUILayout.EndVertical();
+
+        
     }
 
 }
