@@ -70,6 +70,7 @@ public class Minimap {
         m_overhead.orthographic = true;
         m_overhead.transform.position = targetArea.center;
         m_overhead.orthographicSize = targetArea.extents.GetMaxComponent();
+        m_overhead.renderingPath = RenderingPath.VertexLit;
     }
     /// <summary>
     /// Gets a Mesh that covers the plane where the viewing frustum

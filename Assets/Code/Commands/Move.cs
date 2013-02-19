@@ -35,7 +35,7 @@ namespace Commands
 
         public void exec(UnitController controller, Vector3 target)
         {
-            controller.GetComponent<NavMeshAgent>().SetDestination(target);
+            controller.StartCoroutine(controller.coMoveTo(target, 20));
         }
     }
 }

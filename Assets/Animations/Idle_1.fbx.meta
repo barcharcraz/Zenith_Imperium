@@ -1,0 +1,719 @@
+fileFormatVersion: 2
+guid: 5e2358fae439ab04fa9f9a769b1e872b
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: BVH:Hips
+    100002: BVH:LeftFoot
+    100004: BVH:LeftLeg
+    100006: BVH:LeftToeBase
+    100008: BVH:LeftToeBase_End
+    100010: BVH:LeftUpLeg
+    100012: BVH:LHipJoint
+    100014: //RootNode
+    100016: BVH 1:Head
+    100018: BVH 1:Head_End
+    100020: BVH 1:Hips
+    100022: BVH 1:LeftArm
+    100024: BVH 1:LeftFingerBase
+    100026: BVH 1:LeftFoot
+    100028: BVH 1:LeftForeArm
+    100030: BVH 1:LeftHand
+    100032: BVH 1:LeftHandIndex1
+    100034: BVH 1:LeftHandIndex1_End
+    100036: BVH 1:LeftLeg
+    100038: BVH 1:LeftShoulder
+    100040: BVH 1:LeftToeBase
+    100042: BVH 1:LeftToeBase_End
+    100044: BVH 1:LeftUpLeg
+    100046: BVH 1:LHipJoint
+    100048: BVH 1:LowerBack
+    100050: BVH 1:LThumb
+    100052: BVH 1:LThumb_End
+    100054: BVH 1:Neck
+    100056: BVH 1:Neck1
+    100058: BVH 1:RHipJoint
+    100060: BVH 1:RightArm
+    100062: BVH 1:RightFingerBase
+    100064: BVH 1:RightFoot
+    100066: BVH 1:RightForeArm
+    100068: BVH 1:RightHand
+    100070: BVH 1:RightHandIndex1
+    100072: BVH 1:RightHandIndex1_End
+    100074: BVH 1:RightLeg
+    100076: BVH 1:RightShoulder
+    100078: BVH 1:RightToeBase
+    100080: BVH 1:RightToeBase_End
+    100082: BVH 1:RightUpLeg
+    100084: BVH 1:RThumb
+    100086: BVH 1:RThumb_End
+    100088: BVH 1:Spine
+    100090: BVH 1:Spine1
+    100092: BVH:Head
+    100094: BVH:Head_End
+    100096: BVH:LeftArm
+    100098: BVH:LeftFingerBase
+    100100: BVH:LeftForeArm
+    100102: BVH:LeftHand
+    100104: BVH:LeftHandIndex1
+    100106: BVH:LeftHandIndex1_End
+    100108: BVH:LeftShoulder
+    100110: BVH:LowerBack
+    100112: BVH:LThumb
+    100114: BVH:LThumb_End
+    100116: BVH:Neck
+    100118: BVH:Neck1
+    100120: BVH:RHipJoint
+    100122: BVH:RightArm
+    100124: BVH:RightFingerBase
+    100126: BVH:RightFoot
+    100128: BVH:RightForeArm
+    100130: BVH:RightHand
+    100132: BVH:RightHandIndex1
+    100134: BVH:RightHandIndex1_End
+    100136: BVH:RightLeg
+    100138: BVH:RightShoulder
+    100140: BVH:RightToeBase
+    100142: BVH:RightToeBase_End
+    100144: BVH:RightUpLeg
+    100146: BVH:RThumb
+    100148: BVH:RThumb_End
+    100150: BVH:Spine
+    100152: BVH:Spine1
+    400000: BVH:Hips
+    400002: BVH:LeftFoot
+    400004: BVH:LeftLeg
+    400006: BVH:LeftToeBase
+    400008: BVH:LeftToeBase_End
+    400010: BVH:LeftUpLeg
+    400012: BVH:LHipJoint
+    400014: //RootNode
+    400016: BVH 1:Head
+    400018: BVH 1:Head_End
+    400020: BVH 1:Hips
+    400022: BVH 1:LeftArm
+    400024: BVH 1:LeftFingerBase
+    400026: BVH 1:LeftFoot
+    400028: BVH 1:LeftForeArm
+    400030: BVH 1:LeftHand
+    400032: BVH 1:LeftHandIndex1
+    400034: BVH 1:LeftHandIndex1_End
+    400036: BVH 1:LeftLeg
+    400038: BVH 1:LeftShoulder
+    400040: BVH 1:LeftToeBase
+    400042: BVH 1:LeftToeBase_End
+    400044: BVH 1:LeftUpLeg
+    400046: BVH 1:LHipJoint
+    400048: BVH 1:LowerBack
+    400050: BVH 1:LThumb
+    400052: BVH 1:LThumb_End
+    400054: BVH 1:Neck
+    400056: BVH 1:Neck1
+    400058: BVH 1:RHipJoint
+    400060: BVH 1:RightArm
+    400062: BVH 1:RightFingerBase
+    400064: BVH 1:RightFoot
+    400066: BVH 1:RightForeArm
+    400068: BVH 1:RightHand
+    400070: BVH 1:RightHandIndex1
+    400072: BVH 1:RightHandIndex1_End
+    400074: BVH 1:RightLeg
+    400076: BVH 1:RightShoulder
+    400078: BVH 1:RightToeBase
+    400080: BVH 1:RightToeBase_End
+    400082: BVH 1:RightUpLeg
+    400084: BVH 1:RThumb
+    400086: BVH 1:RThumb_End
+    400088: BVH 1:Spine
+    400090: BVH 1:Spine1
+    400092: BVH:Head
+    400094: BVH:Head_End
+    400096: BVH:LeftArm
+    400098: BVH:LeftFingerBase
+    400100: BVH:LeftForeArm
+    400102: BVH:LeftHand
+    400104: BVH:LeftHandIndex1
+    400106: BVH:LeftHandIndex1_End
+    400108: BVH:LeftShoulder
+    400110: BVH:LowerBack
+    400112: BVH:LThumb
+    400114: BVH:LThumb_End
+    400116: BVH:Neck
+    400118: BVH:Neck1
+    400120: BVH:RHipJoint
+    400122: BVH:RightArm
+    400124: BVH:RightFingerBase
+    400126: BVH:RightFoot
+    400128: BVH:RightForeArm
+    400130: BVH:RightHand
+    400132: BVH:RightHandIndex1
+    400134: BVH:RightHandIndex1_End
+    400136: BVH:RightLeg
+    400138: BVH:RightShoulder
+    400140: BVH:RightToeBase
+    400142: BVH:RightToeBase_End
+    400144: BVH:RightUpLeg
+    400146: BVH:RThumb
+    400148: BVH:RThumb_End
+    400150: BVH:Spine
+    400152: BVH:Spine1
+    7400000: 77_02
+    7400002: Idle_1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: Idle_1
+      takeName: 77_3
+      firstFrame: 83
+      lastFrame: 187
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: BVH:Hips
+      humanName: Hips
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 0, y: 0, z: 0}
+        preQ: {x: NaN, y: NaN, z: NaN, w: NaN}
+        postQ: {x: NaN, y: NaN, z: NaN, w: NaN}
+        length: 0
+        modified: 1
+    - boneName: BVH:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: -60.0000038, y: -60.0000038, z: -90}
+        max: {x: 60.0000038, y: 60.0000038, z: 50}
+        value: {x: .0557788126, y: 0, z: .0278894063}
+        preQ: {x: -.617710114, y: .350425661, z: -.60702157, w: .356596023}
+        postQ: {x: -.405580014, y: .579227686, z: -.579227686, w: .405580014}
+        length: .0697235316
+        modified: 1
+    - boneName: BVH:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: -60.0000038, y: -60.0000038, z: -90}
+        max: {x: 60.0000038, y: 60.0000038, z: 50}
+        value: {x: .0536955819, y: 0, z: .0268477909}
+        preQ: {x: -.607021689, y: .356595993, z: -.617709935, w: .35042578}
+        postQ: {x: -.579227865, y: .405579865, z: -.405579865, w: .579227865}
+        length: .0671194941
+        modified: 1
+    - boneName: BVH:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: .0554741882, y: 0, z: .0277370941}
+        preQ: {x: .0660800263, y: .697882295, z: -.189589769, w: .687494934}
+        postQ: {x: -.405579895, y: .579227805, z: -.579227805, w: .405579895}
+        length: .0693427548
+        modified: 1
+    - boneName: BVH:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: .0563673414, y: 0, z: .0281836707}
+        preQ: {x: -.189589754, y: .687494695, z: .0660801008, w: .697882533}
+        postQ: {x: -.579227984, y: .405579686, z: -.405579686, w: .579227984}
+        length: .0704591945
+        modified: 1
+    - boneName: BVH:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: -30.0000019, z: -50}
+        max: {x: 0, y: 30.0000019, z: 50}
+        value: {x: .0120249772, y: 0, z: .00601248862}
+        preQ: {x: -.400509655, y: .582745075, z: -.582745135, w: .400509685}
+        postQ: {x: -.400509685, y: .582745194, z: -.582745194, w: .400509715}
+        length: .015031226
+        modified: 1
+    - boneName: BVH:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: -30.0000019, z: -50}
+        max: {x: 0, y: 30.0000019, z: 50}
+        value: {x: .0132148769, y: 0, z: .00660743844}
+        preQ: {x: -.582745075, y: .400509655, z: -.400509685, w: .582745135}
+        postQ: {x: -.582745194, y: .400509685, z: -.400509715, w: .582745194}
+        length: .0165186003
+        modified: 1
+    - boneName: BVH:LowerBack
+      humanName: Spine
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: .0164205413, y: 0, z: .00821027067}
+        preQ: {x: .540021896, y: .459211439, z: -.517938972, w: -.478790492}
+        postQ: {x: .540021896, y: .459211469, z: -.517938972, w: -.478790522}
+        length: .0205256846
+        modified: 1
+    - boneName: BVH:Spine
+      humanName: Chest
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: .016455438, y: 0, z: .00822771899}
+        preQ: {x: -.499781102, y: -.50021863, z: .499693692, w: .500306189}
+        postQ: {x: -.499781132, y: -.500218689, z: .499693722, w: .500306249}
+        length: .0205693059
+        modified: 1
+    - boneName: BVH:Neck
+      humanName: Neck
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: .0278778095, y: 0, z: .0139389047}
+        preQ: {x: .534853995, y: .463100225, z: -.530677021, w: -.466745168}
+        postQ: {x: .464690566, y: .532449365, z: -.461061507, w: -.536640167}
+        length: .0348472707
+        modified: 1
+    - boneName: BVH:Head
+      humanName: Head
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: .0278778095, y: 0, z: .0139389047}
+        preQ: {x: -.521333754, y: -.47771436, z: .521333754, w: .47771439}
+        postQ: {x: -.564720571, y: -.42554751, z: .564720571, w: .42554754}
+        length: .0348472707
+        modified: 1
+    - boneName: BVH:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: -15.000001, z: -15.000001}
+        max: {x: 0, y: 15.000001, z: 30.0000019}
+        value: {x: .0307858121, y: 0, z: .015392906}
+        preQ: {x: -.0473972447, y: .00508848438, z: .993155956, w: .106623471}
+        postQ: {x: -.0473972484, y: .00508848531, z: .993156075, w: .106623486}
+        length: .0384822749
+        modified: 1
+    - boneName: BVH:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: -15.000001, z: -15.000001}
+        max: {x: 0, y: 15.000001, z: 30.0000019}
+        value: {x: .0303075891, y: 0, z: .0151537945}
+        preQ: {x: -.000577262021, y: .00859265588, z: .0670272633, w: .997713923}
+        postQ: {x: -.000577262079, y: .00859265681, z: .0670272708, w: .997713923}
+        length: .0378844962
+        modified: 1
+    - boneName: BVH:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: -90, y: -100, z: -60.0000038}
+        max: {x: 90, y: 100, z: 100}
+        value: {x: .0397747792, y: 0, z: .0198873896}
+        preQ: {x: .240121573, y: -.0112892892, z: .898397505, w: -.367554128}
+        postQ: {x: 4.40286385e-09, y: .000130682834, z: .99999994, w: 4.19041157e-08}
+        length: .0497184917
+        modified: 1
+    - boneName: BVH:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: -90, y: -100, z: -60.0000038}
+        max: {x: 90, y: 100, z: 100}
+        value: {x: .039719414, y: 0, z: .019859707}
+        preQ: {x: .00809904374, y: -.247909322, z: -.36763832, w: .896279752}
+        postQ: {x: .000130681728, y: -3.90309562e-09, z: 2.23517382e-08, w: .99999994}
+        length: .049649287
+        modified: 1
+    - boneName: BVH:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: .0268648788, y: 0, z: .0134324394}
+        preQ: {x: .453271121, y: .50592345, z: .577514291, w: -.452839851}
+        postQ: {x: -3.05408343e-09, y: .707443237, z: .706770182, w: -3.02679859e-09}
+        length: .0335811079
+        modified: 1
+    - boneName: BVH:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: .0267943162, y: 0, z: .0133971581}
+        preQ: {x: -.505373359, y: -.452839822, z: -.453271121, w: .577995658}
+        postQ: {x: -.706770122, y: 6.70552254e-08, z: -6.51925802e-08, w: .707443237}
+        length: .0334929042
+        modified: 1
+    - boneName: BVH:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: -40, z: -80}
+        max: {x: 0, y: 40, z: 80}
+        value: {x: .0134324394, y: 0, z: .00671621971}
+        preQ: {x: 1.15869603e-09, y: .000130682398, z: .99999994, w: -6.52312204e-09}
+        postQ: {x: 6.91215918e-10, y: .000130682383, z: .99999994, w: -6.52317977e-09}
+        length: .0167905539
+        modified: 1
+    - boneName: BVH:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: -40, z: -80}
+        max: {x: 0, y: 40, z: 80}
+        value: {x: .0133971581, y: 0, z: .00669857906}
+        preQ: {x: .000130680768, y: 1.67392467e-09, z: -9.31322433e-08, w: .99999994}
+        postQ: {x: .000130680739, y: 7.4305706e-10, z: -9.31322433e-08, w: .99999994}
+        length: .0167464521
+        modified: 1
+    - boneName: BVH:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: -50}
+        max: {x: 0, y: 0, z: 50}
+        value: {x: .00874411408, y: 0, z: .00437205704}
+        preQ: {x: .695266187, y: -.128859952, z: .695266187, w: .128859952}
+        postQ: {x: .695266187, y: -.128859952, z: .695266187, w: .128859952}
+        length: .010930147
+        modified: 1
+    - boneName: BVH:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: -50}
+        max: {x: 0, y: 0, z: 50}
+        value: {x: .00815382972, y: 0, z: .00407691486}
+        preQ: {x: .695266187, y: .128859952, z: .695266187, w: -.128859952}
+        postQ: {x: .695266187, y: .128859952, z: .695266187, w: -.128859952}
+        length: .0101922918
+        modified: 1
+    - boneName: BVH:LThumb
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: -25, z: -20}
+        max: {x: 0, y: 25, z: 20}
+        value: {x: .00576727372, y: 0, z: .00288363686}
+        preQ: {x: .275217682, y: .619835675, z: .601338804, w: -.422433972}
+        postQ: {x: .278007299, y: .634890318, z: .671168804, w: -.262980223}
+        length: .00720909424
+        modified: 1
+    - boneName: BVH:LThumb_End
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: .00432545459, y: 0, z: .00216272729}
+        preQ: {x: .14536947, y: .68446672, z: .702558935, w: -.129553437}
+        postQ: {x: .278007269, y: .634890318, z: .671168804, w: -.262980282}
+        length: .00540682068
+        modified: 1
+    - boneName: BVH:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: -20, z: -50}
+        max: {x: 0, y: 20, z: 50}
+        value: {x: .00401679846, y: 0, z: .00200839923}
+        preQ: {x: .0761987939, y: -.0084224781, z: .955027521, w: -.286435217}
+        postQ: {x: 2.32257662e-08, y: .000130677116, z: .99999994, w: -6.21188917e-07}
+        length: .00502100028
+        modified: 1
+    - boneName: BVH:LeftHandIndex1_End
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .00301259919, y: 0, z: .0015062996}
+        preQ: {x: 4.09735876e-05, y: -.0025955576, z: .94962877, w: -.313366264}
+        postQ: {x: 2.32257644e-08, y: .000130677086, z: .99999994, w: -6.2118886e-07}
+        length: .00376575021
+        modified: 1
+    - boneName: BVH:RThumb
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: -25, z: -20}
+        max: {x: 0, y: 25, z: 20}
+        value: {x: .00590869412, y: 0, z: .00295434706}
+        preQ: {x: .620948792, y: .275871336, z: .4217709, w: -.600355625}
+        postQ: {x: -.634439826, y: -.278183877, z: -.262793541, w: .67159462}
+        length: .00738586998
+        modified: 1
+    - boneName: BVH:RThumb_End
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: .00443152012, y: 0, z: .00221576006}
+        preQ: {x: .683891475, y: .145692781, z: .129205734, w: -.703115821}
+        postQ: {x: -.634439886, y: -.278183848, z: -.262793541, w: .67159456}
+        length: .00553940237
+        modified: 1
+    - boneName: BVH:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: -20, z: -50}
+        max: {x: 0, y: 20, z: 50}
+        value: {x: .00411528116, y: 0, z: .00205764058}
+        preQ: {x: -.00369911944, y: .076123856, z: .28655979, w: -.95502615}
+        postQ: {x: .000130681015, y: 3.57290375e-08, z: -5.96046341e-08, w: .99999994}
+        length: .00514410343
+        modified: 1
+    - boneName: BVH:RightHandIndex1_End
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .00308646122, y: 0, z: .00154323061}
+        preQ: {x: .00259554898, y: -4.09846434e-05, z: .313365698, w: -.94962883}
+        postQ: {x: .000130680986, y: 3.52629215e-08, z: -6.70552112e-08, w: .99999994}
+        length: .00385807757
+        modified: 1
+    skeleton:
+    - name: Idle_1
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:Hips
+      position: {x: -5.99771738e-07, y: .169818982, z: -.0110999998}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LHipJoint
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftUpLeg
+      position: {x: -.0136336992, y: -.0157426, z: .0111036003}
+      rotation: {x: 0, y: 0, z: .182235509, w: .98325485}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftLeg
+      position: {x: -.0238467995, y: -.0655186996, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftFoot
+      position: {x: -.0237165987, y: -.0651609004, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftToeBase
+      position: {x: -.00290780002, y: -.00798910018, z: .0201393012}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftToeBase_End
+      position: {x: -0, y: 0, z: .0107923998}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LowerBack
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:Spine
+      position: {x: .000856499944, y: .0203601997, z: -.00245619984}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:Spine1
+      position: {x: 3.5999999e-06, y: .0205693003, z: 2.15999989e-05}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftShoulder
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftArm
+      position: {x: -.0374343991, y: .0081314994, z: -.00366470008}
+      rotation: {x: .000302833243, y: -.00433070445, z: .0396965742, w: .999202311}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftForeArm
+      position: {x: -.0497184992, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftHand
+      position: {x: -.0335811004, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftFingerBase
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftHandIndex1
+      position: {x: -.00622780016, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LeftHandIndex1_End
+      position: {x: -.00502099982, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LThumb
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:LThumb_End
+      position: {x: -.00509760017, y: 0, z: .00509760017}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:Neck
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -.139173105, y: 0, z: -0, w: .990268052}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:Neck1
+      position: {x: .000366399996, y: .0169514995, z: .00317889987}
+      rotation: {x: .182235509, y: -0, z: -0, w: .98325485}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:Head
+      position: {x: -9.31999966e-05, y: .0170181002, z: -.00460129976}
+      rotation: {x: .095845744, y: -0, z: -0, w: .995396137}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:Head_End
+      position: {x: -.000124300001, y: .0177619997, z: -.00193769997}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightShoulder
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightArm
+      position: {x: .0375384986, y: .0050665997, z: -.000652500021}
+      rotation: {x: -.000302832486, y: -.00433070399, z: -.0396966115, w: .999202311}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightForeArm
+      position: {x: .0496492982, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightHand
+      position: {x: .0334928967, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightFingerBase
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightHandIndex1
+      position: {x: .00638039969, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightHandIndex1_End
+      position: {x: .00514410017, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RThumb
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RThumb_End
+      position: {x: .00522259995, y: 0, z: .00522259995}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RHipJoint
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightUpLeg
+      position: {x: .0136348996, y: -.0157426, z: .0111036003}
+      rotation: {x: 0, y: -0, z: -.182235509, w: .98325485}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightLeg
+      position: {x: .0229561999, y: -.063071698, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightFoot
+      position: {x: .0240984987, y: -.0662099943, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightToeBase
+      position: {x: .00231969985, y: -.00637329975, z: .0192232002}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: BVH:RightToeBase_End
+      position: {x: -0, y: 0, z: .0101561993}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 3
+  userData: 

@@ -33,6 +33,7 @@ public class UnitController : BasicController
     public bool moveTo(Vector3 pos, float deltad)
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        
         if (agent == null)
         {
             throw new InvalidOperationException("moving a unit requiers that that unit has a navMeshAgent");
@@ -62,9 +63,21 @@ public class UnitController : BasicController
     {
         while (!moveTo(pos, deltad))
         {
+            setMoving(true);
             yield return null;
         }
-    } 
+        setMoving(false);
+    }
+    private void setMoving(bool val)
+    {
+        Animator anim = GetComponentInChildren<Animator>();
+        if (anim != null && anim.GetBool("Moving") != val)
+        {
+            anim.SetBool("Moving", val);
+        }
+    }
+
+    
     
     
 }

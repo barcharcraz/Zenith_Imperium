@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 3df7154d671cfc340b64b56a7c95f60e
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: BVH:Head
+    100002: BVH:Head_End
+    100004: BVH:Hips
+    100006: BVH:LeftArm
+    100008: BVH:LeftFingerBase
+    100010: BVH:LeftFoot
+    100012: BVH:LeftForeArm
+    100014: BVH:LeftHand
+    100016: BVH:LeftHandIndex1
+    100018: BVH:LeftHandIndex1_End
+    100020: BVH:LeftLeg
+    100022: BVH:LeftShoulder
+    100024: BVH:LeftToeBase
+    100026: BVH:LeftToeBase_End
+    100028: BVH:LeftUpLeg
+    100030: BVH:LHipJoint
+    100032: BVH:LowerBack
+    100034: BVH:LThumb
+    100036: BVH:LThumb_End
+    100038: BVH:Neck
+    100040: BVH:Neck1
+    100042: BVH:RHipJoint
+    100044: BVH:RightArm
+    100046: BVH:RightFingerBase
+    100048: BVH:RightFoot
+    100050: BVH:RightForeArm
+    100052: BVH:RightHand
+    100054: BVH:RightHandIndex1
+    100056: BVH:RightHandIndex1_End
+    100058: BVH:RightLeg
+    100060: BVH:RightShoulder
+    100062: BVH:RightToeBase
+    100064: BVH:RightToeBase_End
+    100066: BVH:RightUpLeg
+    100068: BVH:RThumb
+    100070: BVH:RThumb_End
+    100072: BVH:Spine
+    100074: BVH:Spine1
+    100076: //RootNode
+    400000: BVH:Head
+    400002: BVH:Head_End
+    400004: BVH:Hips
+    400006: BVH:LeftArm
+    400008: BVH:LeftFingerBase
+    400010: BVH:LeftFoot
+    400012: BVH:LeftForeArm
+    400014: BVH:LeftHand
+    400016: BVH:LeftHandIndex1
+    400018: BVH:LeftHandIndex1_End
+    400020: BVH:LeftLeg
+    400022: BVH:LeftShoulder
+    400024: BVH:LeftToeBase
+    400026: BVH:LeftToeBase_End
+    400028: BVH:LeftUpLeg
+    400030: BVH:LHipJoint
+    400032: BVH:LowerBack
+    400034: BVH:LThumb
+    400036: BVH:LThumb_End
+    400038: BVH:Neck
+    400040: BVH:Neck1
+    400042: BVH:RHipJoint
+    400044: BVH:RightArm
+    400046: BVH:RightFingerBase
+    400048: BVH:RightFoot
+    400050: BVH:RightForeArm
+    400052: BVH:RightHand
+    400054: BVH:RightHandIndex1
+    400056: BVH:RightHandIndex1_End
+    400058: BVH:RightLeg
+    400060: BVH:RightShoulder
+    400062: BVH:RightToeBase
+    400064: BVH:RightToeBase_End
+    400066: BVH:RightUpLeg
+    400068: BVH:RThumb
+    400070: BVH:RThumb_End
+    400072: BVH:Spine
+    400074: BVH:Spine1
+    400076: //RootNode
+    7400000: 77_02
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
