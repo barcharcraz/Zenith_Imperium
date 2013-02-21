@@ -14,5 +14,9 @@ public class NavigationEditor  : EditorWindow
     {
         NavigationEditor window = (NavigationEditor)EditorWindow.GetWindow(typeof(NavigationEditor));
     }
+    void OnGUI()
+    {
+        EditorGUILayout.
+    }
 }
 

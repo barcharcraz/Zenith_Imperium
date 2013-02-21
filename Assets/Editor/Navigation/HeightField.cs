@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Navigation
 {
@@ -42,6 +43,19 @@ namespace Navigation
             {
                 array[(int)Math.Round(x * m_resolution), (int)Math.Round(y * m_resolution)] = value;
             }
+        }
+        public Texture2D getBitmap(float maxHeight = 300)
+        {
+            Texture2D retval = new Texture2D(array.GetLength(0), array.GetLength(1), TextureFormat.ARGB32, false);
+            for (int x = 0; x < array.GetLength(0); x++)
+            {
+                for (int y = 0; y < array.GetLength(1); y++)
+                {
+                    retval.SetPixel(x, y, new Color(((float)array[x, y]) / maxHeight, 0, 0));
+                }
+            }
+            retval.Apply();
+            return retval;
         }
 
         
