@@ -56,7 +56,7 @@ namespace Navigation
             return tempLayer;
         }
         
-        private HeightField getHeightField(int resolution, Bounds area)
+        public HeightField getHeightField(int resolution, Bounds area)
         {
             int tempLayer = setupLayer();
             LayerMask mask = 1 << tempLayer;
