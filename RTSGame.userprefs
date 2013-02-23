@@ -1,7 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Units\Infantry\Worker.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\NavigationEditor.cs">
     <Files>
+      <File FileName="Assets\Editor\NavigationEditor.cs" Line="55" Column="92" />
       <File FileName="Assets\Code\Player\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\Build.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\UnitInfo.cs" Line="1" Column="1" />
@@ -11,7 +12,9 @@
       <File FileName="Assets\Code\Units\Resources.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\MapFeatures\ResourceController.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\Buildings\Barracks.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Units\Infantry\Worker.cs" Line="22" Column="53" />
+      <File FileName="Assets\Code\Units\Infantry\Worker.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\Navigation\HeightField.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\Navigation\NavMeshGen.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

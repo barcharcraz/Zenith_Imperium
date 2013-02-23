@@ -12,8 +12,9 @@ public class NavigationEditor  : EditorWindow
 {
     private Terrain[] m_terrains;
     private GUIContent[] m_terrainNames;
-    //TODO: this may need t6o go someplace else
+    //TODO: this may need to go someplace else
     private HeightField m_heightField;
+    private bool showField = false;
     [MenuItem ("Window/NavMeshEditor")]
     static void Init()
     {
@@ -34,20 +35,37 @@ public class NavigationEditor  : EditorWindow
     {
         //use the terrain selected in the popup menu, gotta love unityGUI syntax
         Terrain selectedTerrain = m_terrains[EditorGUILayout.Popup(0, m_terrainNames)];
+        if (m_heightField != null)
+        {
+            EditorGUILayout.ColorField("Hight Field Generated", Color.green);
+        }
+        else
+        {
+            EditorGUILayout.ColorField("Height Field Generated", Color.red);
+        }
         if (GUILayout.Button("Generate Height Field"))
         {
             m_heightField = generateField(selectedTerrain);
         }
-        if (EditorGUILayout.Toggle(false, "Display Height Field"))
+        
+        showField = EditorGUILayout.Toggle("Display Height Field", showField);
+        if (showField && m_heightField != null)
         {
 
+            EditorGUI.DrawPreviewTexture(new Rect(0,300,200,200), m_heightField.getBitmap(5));
         }
+        GUILayout.BeginVertical();
+        if (m_heightField != null)
+        {
+            EditorGUILayout.LabelField("Height Points: ", m_heightField.Length.ToString());
+        }
+        GUILayout.EndVertical();
     }
-    private HeightField generateField(Terrain target)
+    private HeightField generateField(Terrain target, int resolution = 1)
     {
         Bounds area = target.collider.bounds;
         NavMeshGen gen = new NavMeshGen();
-        return gen.getHeightField(10, area);
+        return gen.getHeightField(resolution, area);
     }
 }
 

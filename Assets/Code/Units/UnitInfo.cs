@@ -15,6 +15,10 @@ namespace Units
             get { return m_unitCommands; }
             set { m_unitCommands = value; }
         }
+        public float constructionTime
+        {
+            get { return Cost.Sum() / 5; }
+        }
         public Resources Cost;
         public virtual GameObject Prefab { get; set; }
         public List<ICommandBase> m_unitCommands;

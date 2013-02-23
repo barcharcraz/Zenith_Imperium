@@ -35,7 +35,7 @@ namespace Commands
 
         public void exec(UnitController controller, Vector3 target)
         {
-            controller.StartCoroutine(controller.coMoveTo(target, 20));
+            controller.moveTo(target, 0);
         }
     }
 }

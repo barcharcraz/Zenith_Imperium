@@ -63,20 +63,25 @@ namespace Navigation
             int sizeX = (int)(area.size.x);
             int sizeZ = (int)(area.size.z); //also known as size y but unity is y-up
             HeightField retval = new HeightField(resolution, sizeX, sizeZ);
-            for (double x = 0; x < retval.GetLength(0); x+= (1/(double)resolution))
+            for (float x = 0; x < retval.GetLength(0); x+= (1/(float)resolution))
             {
-                for (double y = 0; y < retval.GetLength(1); y+=(1/(double)resolution))
+                for (float y = 0; y < retval.GetLength(1); y+=(1/(float)resolution))
                 {
                     float maxHeight = area.size.y;
                     RaycastHit info;
                     Ray ray = new Ray(new Vector3((float)x,maxHeight,(float)y), Vector3.down);
                     Physics.Raycast(ray, out info, mask);
-                    double height = info.distance - maxHeight;
-                    retval[x, y] = height;
+                    float height = maxHeight - info.distance;
+                    retval.getHeightAtPosition(x,y).height = height;
                 }
             }
             return retval;
         }
+        //private Mesh generateMesh(HeightField field)
+       // {
+        //    Mesh retval = new Mesh();
+        //    
+        //}
         
     }
 }

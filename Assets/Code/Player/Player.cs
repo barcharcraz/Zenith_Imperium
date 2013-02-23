@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
 
             foreach (ICommandBase c in SelectedUnit.Info.UnitCommands)
             {
-                if (GUILayout.Button(c.Name))
+                if (renderCommand(c))
                 {
                     c.exec(SelectedUnit);
                 }
@@ -147,6 +147,29 @@ public class Player : MonoBehaviour
         GUILayout.Label("Bronze: " + HarvestedResources.Bronze);
         GUILayout.EndVertical();
 
+        
+    }
+    bool renderCommand(ICommandBase command)
+    {
+        bool retval = false;
+        //if we have a timed command we want to draw a label that shows how much time we have left in the building process
+        // UNITYGUI sucks mayhaps I will write my own GUI in direct-2d as some point
+        if (command is ITimedCommand<BasicController>)
+        {
+            ITimedCommand<BasicController> timed = command as ITimedCommand<BasicController>;
+            GUILayout.BeginHorizontal();
+            retval = GUILayout.Button(command.Name);
+            if (timed.Running)
+            {
+                GUILayout.Label(timed.RemainingTime.ToString());
+            }
+            GUILayout.EndHorizontal();
+        }
+        else
+        {
+            retval = GUILayout.Button(command.Name);
+        }
+        return retval;
         
     }
 

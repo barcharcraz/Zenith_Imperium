@@ -17,8 +17,10 @@ namespace Navigation
     ///-------------------------------------------------------------------------------------------------
     public class HeightField
     {
-        private double[,] array;
+        private HeightPoint[,] array;
         private int m_resolution;
+        private Texture2D m_bitmapCache;
+        private bool m_invalidate;
         public int Length
         {
             get { return array.Length; } 
@@ -30,32 +32,65 @@ namespace Navigation
         public HeightField(int resolution, int sizeX, int sizeY)
         {
             m_resolution = resolution;
-            array = new double[resolution * sizeX, resolution * sizeY];
+            array = new HeightPoint[resolution * sizeX, resolution * sizeY];
+            m_invalidate = false;
             
         }
-        public double this[double x, double y]
+        public HeightPoint this[int x, int y]
         {
             get
             {
-                return array[(int)Math.Round(x * m_resolution), (int)Math.Round(y * m_resolution)];
+                return array[x,y];
             }
             set
             {
-                array[(int)Math.Round(x * m_resolution), (int)Math.Round(y * m_resolution)] = value;
+                array[x,y] = value;
+                m_invalidate = true;
             }
+        }
+        
+        public HeightPoint getHeightAtPosition(Vector2 pos)
+        {
+            HeightPoint retval = array[(int)Math.Round(pos.x * m_resolution), (int)Math.Round(pos.y * m_resolution)];
+            //check if the HeightPoint in a reasonable array position is at the right position, avoids a slow lookup
+            if (retval.position2 == pos)
+            {
+                return retval;
+            }
+            else
+            {
+                //looks like the point was not in the expected place, go on and find it
+                IEnumerable<HeightPoint> coll = from HeightPoint p in array where p.position2 == pos select p;
+                return coll.ElementAt(0);
+            }
+
+        }
+        public HeightPoint getHeightAtPosition(float x, float y)
+        {
+            return getHeightAtPosition(new Vector2(x, y));
         }
         public Texture2D getBitmap(float maxHeight = 300)
         {
-            Texture2D retval = new Texture2D(array.GetLength(0), array.GetLength(1), TextureFormat.ARGB32, false);
-            for (int x = 0; x < array.GetLength(0); x++)
+            if (m_bitmapCache == null || m_invalidate)
             {
-                for (int y = 0; y < array.GetLength(1); y++)
+                Texture2D retval = new Texture2D(array.GetLength(0), array.GetLength(1), TextureFormat.ARGB32, false);
+                for (int x = 0; x < array.GetLength(0); x++)
                 {
-                    retval.SetPixel(x, y, new Color(((float)array[x, y]) / maxHeight, 0, 0));
+                    for (int y = 0; y < array.GetLength(1); y++)
+                    {
+                        retval.SetPixel(x, y, new Color((getHeightAtPosition(x,y).height) / maxHeight, 0, 0));
+                    }
                 }
+                retval.Apply();
+                m_bitmapCache = retval;
+                m_invalidate = false;
+                return retval;
             }
-            retval.Apply();
-            return retval;
+            else
+            {
+                return m_bitmapCache;
+            }
+            
         }
 
         

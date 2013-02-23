@@ -9,13 +9,27 @@ using Units;
 
 public class UnitController : BasicController
 {
-    
-    
-    
+
+
+    public void Update()
+    {
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        if (agent != null)
+        {
+            if (agent.hasPath)
+            {
+                setMoving(true);
+            }
+            else
+            {
+                setMoving(false);
+            }
+        }
+    }
     public override void OnIssueCommand(Vector3 pos)
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = pos;
+        moveTo(pos, 0);
     }
 
     ///-------------------------------------------------------------------------------------------------
@@ -45,16 +59,13 @@ public class UnitController : BasicController
         }
         else
         {
-
             //make sure that we dont randomly reassign the path
             //and cause the agent to recalculate all the time
             //still if something screws with our path we want to clobber
             //that change, if a command is executing it can assume that
             //it is the most important command
-            if (agent.destination != pos)
-            {
-                agent.destination = pos;
-            }
+            agent.destination = pos;
+            
             return false;
             
         }
@@ -63,10 +74,8 @@ public class UnitController : BasicController
     {
         while (!moveTo(pos, deltad))
         {
-            setMoving(true);
             yield return null;
         }
-        setMoving(false);
     }
     private void setMoving(bool val)
     {
