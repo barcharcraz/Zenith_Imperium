@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
         m_selectionManager.HandleInput();
         if (SelectedUnit != null)
         {
-
+            GUILayout.BeginVertical();
             foreach (ICommandBase c in SelectedUnit.Info.UnitCommands)
             {
                 if (renderCommand(c))
@@ -135,6 +135,10 @@ public class Player : MonoBehaviour
                     c.exec(SelectedUnit);
                 }
             }
+            GUILayout.EndVertical();
+            GUILayout.Space(100f);
+            GUILayout.Label("Selected Unit Health: " + SelectedUnit.Info.CurrHealth + @"/" + SelectedUnit.Info.MaxHealth);
+            //GUILayout.Space(100f);
         }
         
         GUI.DrawTexture(new Rect(128, 0, 128, 128), minimap.Image, ScaleMode.StretchToFill, false);
@@ -146,6 +150,9 @@ public class Player : MonoBehaviour
         GUILayout.Label("Copper: " + HarvestedResources.Copper);
         GUILayout.Label("Bronze: " + HarvestedResources.Bronze);
         GUILayout.EndVertical();
+        
+        
+        
 
         
     }

@@ -15,6 +15,7 @@ namespace Units.Buildings
             Name = "Campfire";
             Cost.Food = 1000;
             Cost.Stone = 500;
+            MaxHealth = 1500;
             Prefab = UnityEngine.Resources.Load("Buildings/prim_TownCenter") as UnityEngine.GameObject;
             UnitCommands.Add(new Commands.ProduceUnit<Worker>());
             UnitCommands.Add(new Commands.ProduceUnit<Warrior>());

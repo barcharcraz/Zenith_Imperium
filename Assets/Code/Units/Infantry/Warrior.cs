@@ -16,6 +16,7 @@ namespace Units.Infantry
             Cost.Stone = 10;
             Prefab = UnityEngine.Resources.Load("Units/Warrior") as GameObject;
             Speed = 1;
+            MaxHealth = 100;
             UnitCommands.Add(new Commands.Move());
 
         }

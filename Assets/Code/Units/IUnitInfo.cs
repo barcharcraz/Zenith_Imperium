@@ -13,6 +13,8 @@ namespace Units
         List<ICommandBase> UnitCommands { get; set; }
         GameObject CreateUnit(Player owner, Vector3 pos, Quaternion rotation, bool active = true);
         float constructionTime { get; }
+        float MaxHealth { get; set; }
+        float CurrHealth { get; set; }
         
     }
 }

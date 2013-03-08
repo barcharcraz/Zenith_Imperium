@@ -23,6 +23,8 @@ namespace Units
         public virtual GameObject Prefab { get; set; }
         public List<ICommandBase> m_unitCommands;
         public float Speed;
+        public virtual float MaxHealth { get; set; }
+        public virtual float CurrHealth { get; set; }
         public UnitInfo()
         {
             Cost = new Resources();
@@ -31,6 +33,10 @@ namespace Units
         }
         public GameObject CreateUnit(Player owner, Vector3 pos, Quaternion rotation, bool active=true)
         {
+            // set cur health to max health seems reasonable, note that the unit spec should specify the
+            // max health
+            CurrHealth = MaxHealth;
+
             GameObject retval;
             retval = UnityEngine.Object.Instantiate(Prefab, pos, rotation) as GameObject;
             retval.SetActive(active);

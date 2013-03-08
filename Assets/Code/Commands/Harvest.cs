@@ -12,6 +12,7 @@ namespace Commands
 {
     public class Harvest : TargetedCommandImp<ResourceController, UnitController>
     {
+        //this is how far away to start harvesting, the peon will actually stop here
         private const float DELTAD = 30;
         public override void exec(UnitController controller, ResourceController target)
         {
