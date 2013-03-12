@@ -10,21 +10,27 @@ using Units;
 
 namespace Commands
 {
-    public class Harvest : TargetedCommandImp<ResourceController, UnitController>
+    public class Harvest : ComponentTargetedCommand<ResourceController, UnitController>
     {
         //this is how far away to start harvesting, the peon will actually stop here
         private const float DELTAD = 30;
-        public override void exec(UnitController controller, ResourceController target)
+        private bool isDone = false;
+        private bool first = true;
+        public override bool exec(UnitController controller, ResourceController target)
         {
-            if (!(controller.Info is PeonInfo))
+            if (first)
             {
-                throw new System.InvalidOperationException("The harvest command can only be added to Peons");
+                if (!(controller.Info is PeonInfo))
+                {
+                    throw new System.InvalidOperationException("The harvest command can only be added to Peons");
+                }
+                else
+                {
+                    controller.StartCoroutine(doHarvest(target, controller));
+                    first = false;
+                }
             }
-            else
-            {
-                controller.StartCoroutine(doHarvest(target, controller));
-                
-            }
+            return isDone;
         }
         IEnumerator doHarvest(ResourceController sourceCont, UnitController peonCont)
         {
@@ -45,6 +51,7 @@ namespace Commands
                     yield return new WaitForSeconds(peon.HarvestRate);
                 }
             }
+            isDone = true;
         }
 
         public override string Name

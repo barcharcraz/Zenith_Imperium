@@ -13,18 +13,24 @@ namespace Commands
         private T m_unit;
         private float m_remainingTime;
         private bool m_running;
+        private bool isDone = false;
         public ProduceUnit(T unit)
         {
             m_unit = unit;
         }
         public ProduceUnit() { }
-        public override void exec(BasicController controller)
+        public override bool exec(BasicController controller)
         {
-            if (m_unit == null)
+            if (!m_running)
             {
-                m_unit = new T();
+                if (m_unit == null)
+                {
+                    m_unit = new T();
+                }
+                controller.StartCoroutine(coExec(controller));
+                
             }
-            controller.StartCoroutine(coExec(controller));
+            return isDone;
             
         }
         public override void initCommand()
@@ -49,6 +55,7 @@ namespace Commands
                 m_remainingTime -= 1;
             }
             m_unit.CreateUnit(controller.Owner, controller.transform.position + new Vector3(10, 0, 0), Quaternion.identity);
+            isDone = true;
         }
 
         public float RemainingTime

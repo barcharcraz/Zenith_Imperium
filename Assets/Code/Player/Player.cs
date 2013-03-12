@@ -7,6 +7,7 @@ using Units;
 using Units.Buildings;
 using Commands;
 using Events;
+using Interface;
 
 
 public class Player : MonoBehaviour
@@ -132,7 +133,8 @@ public class Player : MonoBehaviour
             {
                 if (renderCommand(c))
                 {
-                    c.exec(SelectedUnit);
+                    c.preExec(SelectedUnit);
+                    SelectedUnit.CommandQueue.Enqueue(c);
                 }
             }
             GUILayout.EndVertical();
@@ -150,6 +152,11 @@ public class Player : MonoBehaviour
         GUILayout.Label("Copper: " + HarvestedResources.Copper);
         GUILayout.Label("Bronze: " + HarvestedResources.Bronze);
         GUILayout.EndVertical();
+        ICommandQueueUI comm = new UnityCommandQueueUI();
+        if (SelectedUnit != null)
+        {
+            comm.drawCommandQueue(SelectedUnit.CommandQueue);
+        }
         
         
         

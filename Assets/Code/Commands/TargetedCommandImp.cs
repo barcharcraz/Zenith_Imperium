@@ -8,46 +8,54 @@ using UnityEngine;
 
 namespace Commands
 {
-    public abstract class TargetedCommandImp<T,U> : Command<U>, ITargetedCommand<T,U> where T : class where U : BasicController
+    public abstract class TargetedCommandImp<T,U> : Command<U>, ITargetedCommand<T,U> where U : BasicController
     {
         protected float Deltad
         {
             get { return 10; }
         }
+        //TODO this flag is retarded and should be killed with fire
+        private bool hasExecuted = false;
+        private T target = default(T);
         protected MouseEventHandler m_handler;
-        public override void exec(U controller)
+        public override bool exec(U controller)
         {
-            //bind the handler to a compitible type by supplying the final
-            //argument from our argument list
-            m_handler = (object sender, MouseEventArgs e) => Owner_SendCommand(sender, e, controller);
-            controller.Owner.SendCommand += m_handler;
+            // Only bind the event handler on the first run of exec,
+            // since we assign a lambda to m_handler inside this if and only inside thei if
+            // we know that if m_handler is null it is the first run
+            if (m_handler == null)
+            {
+                //bind the handler to a compitible type by supplying the final
+                //argument from our argument list
+                m_handler = (object sender, MouseEventArgs e) => Owner_SendCommand(sender, e, controller);
+                controller.Owner.SendCommand += m_handler;
+            }
+            return execThunk(controller);
         }
         protected virtual void Owner_SendCommand(object sender, MouseEventArgs e, U b)
         {
-
-            //Find things near where the player clicked
-            //1 is small enough that that is likely the thing that the player meant
-            //to click on
-            Collider[] hits = Physics.OverlapSphere(e.worldPos, 1);
-            Component cont = null;
-            foreach (Component c in hits)
-            {
-                cont = c.GetComponent(typeof (T));
-                //break as soon as we find something with the right script
-                //no need to keep on searching
-                if (cont != null)
-                {
-                    break;
-                }
-            }
+            
             //if we found a component of the right type
-            if (cont != null)
+            target = GetTarget(e.worldPos);
+            hasExecuted = true;
+            b.Owner.SendCommand -= m_handler;
+            
+        }
+        protected abstract T GetTarget(Vector3 clickPos);
+        private bool execThunk(U controller)
+        {
+            if (hasExecuted)
             {
-                exec(b,cont as T);
-                b.Owner.SendCommand -= m_handler;
+                
+                m_handler = null;
+                return exec(controller, target);
+            }
+            else
+            {
+                return false;
             }
         }
-        public abstract void exec(U controller, T target);
+        public abstract bool exec(U controller, T target);
 
         public override abstract string Name { get; }
     }

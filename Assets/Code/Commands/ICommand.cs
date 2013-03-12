@@ -13,7 +13,9 @@ namespace Commands
     /// </summary>
     public interface ICommand<T> : ICommandBase where T : BasicController
     {
+        void preExec(T controller);
+        bool exec(T controller);
+        void postExec(T controller);
         
-        void exec(T controller);
     }
 }

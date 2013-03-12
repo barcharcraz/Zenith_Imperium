@@ -9,6 +9,6 @@ namespace Commands
     interface ITargetedCommand<T,U> : ICommand<U> where U : BasicController
     {
         
-        void exec(U controller, T target);
+        bool exec(U controller, T target);
     }
 }

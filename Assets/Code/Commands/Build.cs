@@ -14,17 +14,18 @@ namespace Commands
         private T m_unit;
         private GameObject m_ghost;
         public Build() { }
-        public override void exec(BasicController controller, UnityEngine.Vector3 target)
+        public override bool exec(BasicController controller, UnityEngine.Vector3 target)
         {
             m_ghost.SetActive(false);
+            controller.Owner.MouseMove -= Owner_MouseMove;
             m_unit.CreateUnit(controller.Owner, target, Quaternion.identity);
+            return true;
         }
-        public override void exec(BasicController controller)
+        public override bool exec(BasicController controller)
         {
-            base.exec(controller);
-            
             m_ghost.SetActive(true);
             controller.Owner.MouseMove += Owner_MouseMove;
+            return base.exec(controller);
 
         }
         public override void initCommand()

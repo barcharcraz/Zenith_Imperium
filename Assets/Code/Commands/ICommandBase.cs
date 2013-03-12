@@ -8,7 +8,9 @@ namespace Commands
     public interface ICommandBase
     {
         string Name { get; }
-        void exec(BasicController controller);
+        void preExec(BasicController controller);
+        bool exec(BasicController controller);
+        void postExec(BasicController controller);
         void initCommand();
     }
 }
