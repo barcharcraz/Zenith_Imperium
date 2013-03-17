@@ -14,7 +14,7 @@ namespace Interface
             GUILayout.BeginVertical();
             foreach (ICommandBase c in toDraw)
             {
-                GUILayout.Label(c.Name);
+                GUILayout.Label(c.ToString());
             }
             GUILayout.EndVertical();
         }

@@ -18,7 +18,10 @@ namespace Commands
         {
             m_unit = unit;
         }
-        public ProduceUnit() { }
+        public ProduceUnit()
+        {
+            
+        }
         public override bool exec(BasicController controller)
         {
             if (!m_running)

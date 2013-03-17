@@ -129,12 +129,16 @@ public class Player : MonoBehaviour
         if (SelectedUnit != null)
         {
             GUILayout.BeginVertical();
-            foreach (ICommandBase c in SelectedUnit.Info.UnitCommands)
+            foreach (ICommandBuilderBase c in SelectedUnit.Info.UnitCommands)
             {
                 if (renderCommand(c))
                 {
-                    c.preExec(SelectedUnit);
-                    SelectedUnit.CommandQueue.Enqueue(c);
+                    //in an ideal world the queue would haave events to handle this
+                    //but for now this is eaiser, also the collections with events are all
+                    //WPF or .net 4
+                    ICommandBase comm = c.GetCommand();
+                    comm.preExec(SelectedUnit);
+                    SelectedUnit.CommandQueue.Enqueue(comm);
                 }
             }
             GUILayout.EndVertical();
@@ -152,10 +156,10 @@ public class Player : MonoBehaviour
         GUILayout.Label("Copper: " + HarvestedResources.Copper);
         GUILayout.Label("Bronze: " + HarvestedResources.Bronze);
         GUILayout.EndVertical();
-        ICommandQueueUI comm = new UnityCommandQueueUI();
+        ICommandQueueUI commUI = new UnityCommandQueueUI();
         if (SelectedUnit != null)
         {
-            comm.drawCommandQueue(SelectedUnit.CommandQueue);
+            commUI.drawCommandQueue(SelectedUnit.CommandQueue);
         }
         
         
@@ -163,12 +167,12 @@ public class Player : MonoBehaviour
 
         
     }
-    bool renderCommand(ICommandBase command)
+    bool renderCommand(ICommandBuilderBase command)
     {
         bool retval = false;
         //if we have a timed command we want to draw a label that shows how much time we have left in the building process
         // UNITYGUI sucks mayhaps I will write my own GUI in direct-2d as some point
-        if (command is ITimedCommand<BasicController>)
+        /*if (command is ITimedCommand<BasicController>)
         {
             ITimedCommand<BasicController> timed = command as ITimedCommand<BasicController>;
             GUILayout.BeginHorizontal();
@@ -180,9 +184,9 @@ public class Player : MonoBehaviour
             GUILayout.EndHorizontal();
         }
         else
-        {
+        {*/
             retval = GUILayout.Button(command.Name);
-        }
+        //}
         return retval;
         
     }

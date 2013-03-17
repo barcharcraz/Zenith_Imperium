@@ -13,7 +13,7 @@ namespace Units.Buildings
 			Cost.Stone = 50;
             MaxHealth = 1000;
 			Prefab = UnityEngine.Resources.Load("Buildings/prim_barracks") as UnityEngine.GameObject;
-			UnitCommands.Add(new Commands.ProduceUnit<Warrior>());
+			UnitCommands.Add(new Commands.CommandBuilder<Commands.ProduceUnit<Warrior> >());
 			Speed = 0;
 		}
 	}

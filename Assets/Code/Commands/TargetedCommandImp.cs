@@ -18,19 +18,22 @@ namespace Commands
         private bool hasExecuted = false;
         private T target = default(T);
         protected MouseEventHandler m_handler;
+        public override void preExec(U controller)
+        {
+            base.preExec(controller);
+            hasExecuted = false;
+            m_handler = (object sender, MouseEventArgs e) => Owner_SendCommand(sender, e, controller);
+            controller.Owner.SendCommand += m_handler;
+        }
         public override bool exec(U controller)
         {
-            // Only bind the event handler on the first run of exec,
-            // since we assign a lambda to m_handler inside this if and only inside thei if
-            // we know that if m_handler is null it is the first run
-            if (m_handler == null)
-            {
-                //bind the handler to a compitible type by supplying the final
-                //argument from our argument list
-                m_handler = (object sender, MouseEventArgs e) => Owner_SendCommand(sender, e, controller);
-                controller.Owner.SendCommand += m_handler;
-            }
+            
             return execThunk(controller);
+        }
+        public override void postExec(U controller)
+        {
+            base.postExec(controller);
+            hasExecuted = false;
         }
         protected virtual void Owner_SendCommand(object sender, MouseEventArgs e, U b)
         {
@@ -58,5 +61,9 @@ namespace Commands
         public abstract bool exec(U controller, T target);
 
         public override abstract string Name { get; }
+        public override string ToString()
+        {
+            return base.ToString() + " " + hasExecuted.ToString();
+        }
     }
 }

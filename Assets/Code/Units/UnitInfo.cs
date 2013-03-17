@@ -10,7 +10,7 @@ namespace Units
     public class UnitInfo : IUnitInfo
     {
         public string Name { get; set; }
-        public List<ICommandBase> UnitCommands
+        public List<ICommandBuilderBase> UnitCommands
         {
             get { return m_unitCommands; }
             set { m_unitCommands = value; }
@@ -21,14 +21,14 @@ namespace Units
         }
         public Resources Cost;
         public virtual GameObject Prefab { get; set; }
-        public List<ICommandBase> m_unitCommands;
+        public List<ICommandBuilderBase> m_unitCommands;
         public float Speed;
         public virtual float MaxHealth { get; set; }
         public virtual float CurrHealth { get; set; }
         public UnitInfo()
         {
             Cost = new Resources();
-            UnitCommands = new List<ICommandBase>();
+            UnitCommands = new List<ICommandBuilderBase>();
             Speed = 0;
         }
         public GameObject CreateUnit(Player owner, Vector3 pos, Quaternion rotation, bool active=true)

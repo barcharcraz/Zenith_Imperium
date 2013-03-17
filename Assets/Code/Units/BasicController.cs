@@ -24,6 +24,7 @@ public abstract class BasicController : MonoBehaviour
     void Start()
     {
         CommandQueue = new Queue<ICommandBase>();
+        
         initSelectionBox();
     }
     public virtual void Update()

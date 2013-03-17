@@ -13,7 +13,10 @@ namespace Commands
         protected MouseEventHandler m_moveHandler;
         private T m_unit;
         private GameObject m_ghost;
-        public Build() { }
+        public Build()
+        {
+            
+        }
         public override bool exec(BasicController controller, UnityEngine.Vector3 target)
         {
             m_ghost.SetActive(false);

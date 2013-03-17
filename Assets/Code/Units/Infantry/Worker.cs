@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Commands;
 using System.Text;
 using Units.Buildings;
 
@@ -15,11 +16,11 @@ namespace Units.Infantry
             HarvestRate = 0.1f;
             harvestAmount = 50;
             Prefab = UnityEngine.Resources.Load("Units/Worker") as UnityEngine.GameObject;
-            UnitCommands.Add(new Commands.Move());
-            UnitCommands.Add(new Commands.Harvest());
-            UnitCommands.Add(new Commands.Return());
-            UnitCommands.Add(new Commands.Build<TownCenter>());
-			UnitCommands.Add(new Commands.Build<Barracks>());
+            UnitCommands.Add(new CommandBuilder<Move>());
+            UnitCommands.Add(new CommandBuilder<Harvest>());
+            UnitCommands.Add(new CommandBuilder<Return>());
+            UnitCommands.Add(new CommandBuilder<Build<TownCenter>>());
+			UnitCommands.Add(new CommandBuilder<Build<Barracks>>());
         }
     }
 }

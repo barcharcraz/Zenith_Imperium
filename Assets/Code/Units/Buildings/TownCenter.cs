@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Units.Infantry;
+using Commands;
 
 
 namespace Units.Buildings
@@ -17,8 +18,8 @@ namespace Units.Buildings
             Cost.Stone = 500;
             MaxHealth = 1500;
             Prefab = UnityEngine.Resources.Load("Buildings/prim_TownCenter") as UnityEngine.GameObject;
-            UnitCommands.Add(new Commands.ProduceUnit<Worker>());
-            UnitCommands.Add(new Commands.ProduceUnit<Warrior>());
+            UnitCommands.Add(new CommandBuilder<ProduceUnit<Worker>>());
+            UnitCommands.Add(new CommandBuilder<ProduceUnit<Warrior>>());
             Speed = 0;
         }
 
