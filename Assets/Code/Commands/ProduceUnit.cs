@@ -1,74 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
 using System.Text;
-using Units;
 using UnityEngine;
+using Units;
 
 namespace Commands
 {
-    public class ProduceUnit<T> : Command<BasicController>, ITimedCommand<BasicController>  where T : IUnitInfo, new()
-    {
-        private T m_unit;
+	class ProduceUnit : Command
+	{
+        private IUnitInfo m_info;
         private float m_remainingTime;
-        private bool m_running;
-        private bool isDone = false;
-        public ProduceUnit(T unit)
+        public float RemainingTime { get { return m_remainingTime; } }
+
+        public ProduceUnit(IUnitInfo info)
         {
-            m_unit = unit;
+            m_info = info;
+            m_remainingTime = m_info.constructionTime;
         }
-        public ProduceUnit()
+        public void Update()
         {
-            
-        }
-        public override bool exec(BasicController controller)
-        {
-            if (!m_running)
+            m_remainingTime -= Time.deltaTime;
+            if (RemainingTime <= 0)
             {
-                if (m_unit == null)
-                {
-                    m_unit = new T();
-                }
-                controller.StartCoroutine(coExec(controller));
-                
-            }
-            return isDone;
-            
-        }
-        public override void initCommand()
-        {
-            if (m_unit == null)
-            {
-                m_unit = new T();
+                m_info.CreateUnit(GetComponent<BasicController>().Owner, transform.right * 5, Quaternion.identity);
+                Destroy(this);
             }
         }
-        public override string Name
-        {
-            get { return m_unit.Name; }
-        }
 
-        public IEnumerator coExec(BasicController controller)
-        {
-            m_running = true;
-            m_remainingTime = m_unit.constructionTime;
-            while (m_remainingTime > 0)
-            {
-                yield return new WaitForSeconds(1);
-                m_remainingTime -= 1;
-            }
-            m_unit.CreateUnit(controller.Owner, controller.transform.position + new Vector3(10, 0, 0), Quaternion.identity);
-            isDone = true;
-        }
-
-        public float RemainingTime
-        {
-            get { return m_remainingTime; }
-        }
-
-        public bool Running
-        {
-            get { return m_running; }
-        }
-    }
+	}
 }
