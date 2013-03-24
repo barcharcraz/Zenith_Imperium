@@ -8,6 +8,6 @@ namespace Interface
 {
     interface ICommandQueueUI
     {
-        void drawCommandQueue(Queue<ICommandBase> toDraw);
+        void drawCommandQueue(Queue<Type> toDraw);
     }
 }

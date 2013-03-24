@@ -9,9 +9,10 @@ namespace Commands
 	public class MoveTo : Command
 	{
         private Vector3 m_target;
-        public MoveTo(Vector3 target)
+        public override void init(object args)
         {
-            m_target = target;
+            m_target = (Vector3)args;
+            base.init(args);
         }
         public void Start()
         {

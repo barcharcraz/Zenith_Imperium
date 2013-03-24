@@ -7,18 +7,18 @@ using Units;
 
 namespace Commands
 {
-	class ProduceUnit : Command
+	class ProduceUnit<T> : Command where T : IUnitInfo, new()
 	{
         private IUnitInfo m_info;
         private float m_remainingTime;
         public float RemainingTime { get { return m_remainingTime; } }
 
-        public ProduceUnit(IUnitInfo info)
+        public virtual void Start()
         {
-            m_info = info;
+            m_info = new T();
             m_remainingTime = m_info.constructionTime;
         }
-        public void Update()
+        public virtual void Update()
         {
             m_remainingTime -= Time.deltaTime;
             if (RemainingTime <= 0)

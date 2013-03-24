@@ -11,9 +11,9 @@ public class UnitController : BasicController
 {
 
 
-    public override void Update()
+    public virtual void Update()
     {
-        base.Update();
+        //base.Update();
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         if (agent != null)
         {

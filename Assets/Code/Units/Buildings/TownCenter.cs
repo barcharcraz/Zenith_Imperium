@@ -18,8 +18,8 @@ namespace Units.Buildings
             Cost.Stone = 500;
             MaxHealth = 1500;
             Prefab = UnityEngine.Resources.Load("Buildings/prim_TownCenter") as UnityEngine.GameObject;
-            UnitCommands.Add(new CommandBuilder<ProduceUnit<Worker>>());
-            UnitCommands.Add(new CommandBuilder<ProduceUnit<Warrior>>());
+            UnitCommands.Add(typeof(Commands.ProduceUnit<Worker>));
+            UnitCommands.Add(typeof(Commands.ProduceUnit<Warrior>));
             Speed = 0;
         }
 

@@ -9,14 +9,14 @@ namespace Interface
 {
     class UnityCommandQueueUI : ICommandQueueUI
     {
-        public void drawCommandQueue(Queue<Commands.ICommandBase> toDraw)
+        public void drawCommandQueue(Queue<Type> toDraw)
         {
-            GUILayout.BeginVertical();
+            /*GUILayout.BeginVertical();
             foreach (ICommandBase c in toDraw)
             {
                 GUILayout.Label(c.ToString());
             }
-            GUILayout.EndVertical();
+            GUILayout.EndVertical();*/
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Units.Infantry
             HarvestRate = 0.1f;
             harvestAmount = 50;
             Prefab = UnityEngine.Resources.Load("Units/Worker") as UnityEngine.GameObject;
-            UnitCommands.Add(new CommandBuilder<Move>());
+            UnitCommands.Add(typeof(Commands.Move));
             UnitCommands.Add(new CommandBuilder<Harvest>());
             UnitCommands.Add(new CommandBuilder<Return>());
             UnitCommands.Add(new CommandBuilder<Build<TownCenter>>());

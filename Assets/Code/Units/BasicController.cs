@@ -17,26 +17,15 @@ public abstract class BasicController : MonoBehaviour
     }
     public Player Owner { get; set; }
     private GameObject m_selectionBox;
-    public Queue<ICommandBase> CommandQueue { get; set; }
+    public CommandManager CommandQueue { get; set; }
 
     public virtual void OnIssueCommand(Vector3 pos) { }
 
     void Start()
     {
-        CommandQueue = new Queue<ICommandBase>();
-        
+
+        CommandQueue = new CommandManager(this.gameObject);
         initSelectionBox();
-    }
-    public virtual void Update()
-    {
-        //TODO make this better
-        if (CommandQueue.Count > 0)
-        {
-            if (CommandQueue.Peek().exec(this))
-            {
-                CommandQueue.Dequeue().postExec(this);
-            }
-        }
     }
     public virtual void OnDeselect()
     {

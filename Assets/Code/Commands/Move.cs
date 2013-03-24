@@ -7,18 +7,12 @@ using UnityEngine;
 using Events;
 namespace Commands
 {
-    class Move : PositionTargetedCommand<UnitController>
+    class Move : Command
     {
-        public override string Name
+        public virtual void Update()
         {
-            get { return "Move"; }
-        }
-
-        
-
-        public override bool exec(UnitController controller, Vector3 target)
-        {
-            return controller.moveTo(target, 1);
+            OnAddCommands(typeof(MoveTo), typeof(WaitForClick));
+            Destroy(this);
         }
     }
 }

@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
         if (SelectedUnit != null)
         {
             GUILayout.BeginVertical();
-            foreach (ICommandBuilderBase c in SelectedUnit.Info.UnitCommands)
+            foreach (Type c in SelectedUnit.Info.UnitCommands)
             {
                 if (renderCommand(c))
                 {
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
 
         
     }
-    bool renderCommand(ICommandBuilderBase command)
+    bool renderCommand(Type command)
     {
         bool retval = false;
         //if we have a timed command we want to draw a label that shows how much time we have left in the building process
@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
         }
         else
         {*/
-            retval = GUILayout.Button(command.Name);
+            retval = GUILayout.Button(command.ToString());
         //}
         return retval;
         
