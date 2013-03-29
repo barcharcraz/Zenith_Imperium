@@ -18,7 +18,7 @@ namespace Commands
             m_info = new T();
             m_remainingTime = m_info.constructionTime;
         }
-        public virtual void Update()
+        public override void Update()
         {
             m_remainingTime -= Time.deltaTime;
             if (RemainingTime <= 0)

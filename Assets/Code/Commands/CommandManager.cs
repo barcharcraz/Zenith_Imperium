@@ -4,30 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using UnityEngine;
+using ExtensionMethods;
 
 namespace Commands
 {
-	public class CommandManager
+	public class CommandManager : MonoBehaviour
 	{
-        private GameObject m_attachedObject;
+		private Command executingCommand;
         private Queue<Type> m_commandQueue;
-        public CommandManager(GameObject target)
-        {
-            m_attachedObject = target;
-            m_commandQueue = new Queue<Type>();
-        }
+		public void Start() 
+		{
+			m_commandQueue = new Queue<Type>();
+		}
         public void handleCommand(Command src, System.Object args)
         {
-            src.Finished -= handleCommand;
-            src.AddCommands -= AddCommands;
+            if (src != null)
+            {
+                src.Finished -= handleCommand;
+                src.AddCommands -= AddCommands;
+            }
             Type nextCommand = m_commandQueue.Dequeue();
-            if (!nextCommand.IsAssignableFrom(typeof(Command)))
+            if (nextCommand.BaseType != typeof(Commands.Command))
             {
                 throw new InvalidOperationException("Commands must inherit from Command type " + nextCommand + "does not");
             }
-            
-            Command addedCommand = m_attachedObject.AddComponent(nextCommand) as Command;
-            addedCommand.init(args);
+			
+            executingCommand = nextCommand;
             addedCommand.Finished += handleCommand;
             addedCommand.AddCommands += AddCommands;
             
@@ -36,9 +38,36 @@ namespace Commands
         {
             foreach (Type c in commands)
             {
-                m_commandQueue.Enqueue(c);
+                AddCommand(c);
             }
         }
+        public void AddCommand(Type command)
+        {
+            m_commandQueue.Enqueue(command);
+            //only want to kick off if the previously added command is the only
+            //command in the queue
+            if (m_commandQueue.Count == 1)
+            {
+                handleCommand(null, null);
+            }
+            
+        }
+		public void Update() 
+		{
+			if(executingCommand != null) 
+			{
+				executingCommand.Update();
+			}
+		}
+		private IEnumerable<ConstructorInfo> GetCompatibleConstructors(Type command, params Type[] signature)
+		{
+            IEnumerable<ConstructorInfo> retval = from ConstructorInfo c in command.GetConstructors()
+                                                  where c.GetParameters().IsEqual(signature)
+                                                  select c;
+            return retval;
+		}
+        private Type[] InterperetReturnValue(params System.Object[] returnVal)
+        
         
 	}
 }

@@ -136,9 +136,7 @@ public class Player : MonoBehaviour
                     //in an ideal world the queue would haave events to handle this
                     //but for now this is eaiser, also the collections with events are all
                     //WPF or .net 4
-                    ICommandBase comm = c.GetCommand();
-                    comm.preExec(SelectedUnit);
-                    SelectedUnit.CommandQueue.Enqueue(comm);
+                    SelectedUnit.CommandQueue.AddCommand(c);
                 }
             }
             GUILayout.EndVertical();
@@ -147,7 +145,7 @@ public class Player : MonoBehaviour
             //GUILayout.Space(100f);
         }
         
-        GUI.DrawTexture(new Rect(128, 0, 128, 128), minimap.Image, ScaleMode.StretchToFill, false);
+        GUI.DrawTexture(new Rect(300, 0, 128, 128), minimap.Image, ScaleMode.StretchToFill, false);
         GUILayout.BeginVertical();
         GUILayout.Label("Food: " + HarvestedResources.Food);
         GUILayout.Label("Gold: " + HarvestedResources.Gold);
@@ -156,11 +154,6 @@ public class Player : MonoBehaviour
         GUILayout.Label("Copper: " + HarvestedResources.Copper);
         GUILayout.Label("Bronze: " + HarvestedResources.Bronze);
         GUILayout.EndVertical();
-        ICommandQueueUI commUI = new UnityCommandQueueUI();
-        if (SelectedUnit != null)
-        {
-            commUI.drawCommandQueue(SelectedUnit.CommandQueue);
-        }
         
         
         

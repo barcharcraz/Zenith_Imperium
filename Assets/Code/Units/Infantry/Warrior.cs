@@ -17,7 +17,7 @@ namespace Units.Infantry
             Prefab = UnityEngine.Resources.Load("Units/Warrior") as GameObject;
             Speed = 1;
             MaxHealth = 100;
-            UnitCommands.Add(new Commands.CommandBuilder<Commands.Move>());
+            UnitCommands.Add(typeof(Commands.Move));
 
         }
     }

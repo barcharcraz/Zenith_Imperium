@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Commands;
+using Commands.Groups;
 using System.Text;
 using Units.Buildings;
 
@@ -19,8 +20,8 @@ namespace Units.Infantry
             UnitCommands.Add(typeof(Commands.Move));
             //UnitCommands.Add(new CommandBuilder<Harvest>());
             //UnitCommands.Add(new CommandBuilder<Return>());
-            UnitCommands.Add(new CommandBuilder<Build<TownCenter>>());
-			UnitCommands.Add(new CommandBuilder<Build<Barracks>>());
+            UnitCommands.Add(typeof(Build<TownCenter>));
+			UnitCommands.Add(typeof(Build<Barracks>));
         }
     }
 }

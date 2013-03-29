@@ -6,33 +6,27 @@ using UnityEngine;
 
 namespace Commands
 {
-    public delegate void CommandFinishedHandler(Command src, System.Object retval);
+    public delegate void CommandFinishedHandler(Command src, params System.Object[] retval);
     public delegate void CommandAddHandler(params Type[] commands);
-	public class Command : MonoBehaviour
+	public abstract class Command
 	{
         public event CommandAddHandler AddCommands;
         public event CommandFinishedHandler Finished;
-        public virtual void Awake()
-        {
-            this.enabled = false;
-        }
-        public virtual void init(System.Object args)
-        {
-            this.enabled = true;
-        }
+        //specify the type signature of the returned values
+        public virtual Type[] ReturnType { get { return null; } }
+		public CommandManager parent { get; set; }
         protected virtual void OnFinished(System.Object retval)
         {
             Finished(this, retval);
             
             
         }
+		public abstract void Update();
+		
         protected virtual void OnAddCommands(params Type[] commands)
         {
             AddCommands(commands);
         }
-        public virtual void OnDestroy()
-        {
-            OnFinished(null);
-        }
+
 	}
 }

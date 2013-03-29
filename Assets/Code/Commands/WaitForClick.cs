@@ -9,17 +9,13 @@ namespace Commands
     public class WaitForClick : Command
     {
         private Vector3 retval;
-        public void Update()
+        public override void Update()
         {
             if (Input.GetButtonDown("IssueCommand"))
             {
                 retval = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Destroy(this);
+                OnFinished(null);
             }
-        }
-        public override void OnDestroy()
-        {
-            OnFinished(retval);
         }
     }
 }
