@@ -24,7 +24,7 @@ public abstract class BasicController : MonoBehaviour
     void Start()
     {
 
-        CommandQueue = new CommandManager(this.gameObject);
+        CommandQueue = this.gameObject.AddComponent<CommandManager>();
         initSelectionBox();
     }
     public virtual void OnDeselect()

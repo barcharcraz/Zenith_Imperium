@@ -17,13 +17,13 @@ namespace Commands
         public void Start()
         {
             //find the navagation agent and set the destination
-            GetComponent<NavMeshAgent>().destination = m_target;
+            parent.GetComponent<NavMeshAgent>().destination = m_target;
         }
         public override void Update()
         {
-            if (GetComponent<NavMeshAgent>().hasPath == false)
+            if (parent.GetComponent<NavMeshAgent>().hasPath == false)
             {
-                Destroy(this);
+                OnFinished(null);
             }
         }
 	}

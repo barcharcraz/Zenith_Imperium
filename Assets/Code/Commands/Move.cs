@@ -12,7 +12,7 @@ namespace Commands
         public override void Update()
         {
             OnAddCommands(typeof(WaitForClick), typeof(MoveTo) );
-            Destroy(this);
+            OnFinished(null);
         }
     }
 }

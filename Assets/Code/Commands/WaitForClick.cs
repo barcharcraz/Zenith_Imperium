@@ -14,7 +14,7 @@ namespace Commands
             if (Input.GetButtonDown("IssueCommand"))
             {
                 retval = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                OnFinished(null);
+                OnFinished(retval);
             }
         }
     }
