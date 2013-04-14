@@ -13,9 +13,9 @@ namespace Commands
 		public event CommandAddHandler AddCommands;
 		public event CommandFinishedHandler Finished;
 		//specify the type signature of the returned values
-		public virtual Type[] ReturnType { get { return null; } }
-		public CommandManager parent { get; set; }
-		protected virtual void OnFinished(System.Object retval)
+		public virtual Type[] ReturnType { get { return new Type[]{}; } }
+		//public CommandManager parent { get; set; }
+		protected virtual void OnFinished(params System.Object[] retval)
 		{
 			Finished(this, retval);
 		}

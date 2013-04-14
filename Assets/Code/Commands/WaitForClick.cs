@@ -9,11 +9,19 @@ namespace Commands
     public class WaitForClick : Command
     {
         private Vector3 retval;
+		public override Type[] ReturnType {
+			get {
+				return new System.Type[]{typeof(Vector3)};
+			}
+		}
         public override void Update()
         {
-            if (Input.GetButtonDown("IssueCommand"))
+            if (Input.GetButtonDown("Select") && GUIUtility.hotControl == 0)
             {
-                retval = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				Ray screenRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit hitInfo;
+				Physics.Raycast(screenRay, out hitInfo);
+                retval = hitInfo.point;
                 OnFinished(retval);
             }
         }

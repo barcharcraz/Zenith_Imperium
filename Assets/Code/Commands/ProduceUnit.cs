@@ -12,9 +12,10 @@ namespace Commands
 		private IUnitInfo m_info;
 		private float m_remainingTime;
 		public float RemainingTime { get { return m_remainingTime; } }
-
-		public ProduceUnit()
+        private CommandManager m_parent;
+		public ProduceUnit(CommandManager parent)
 		{
+            m_parent = parent;
 			m_info = new T();
 			m_remainingTime = m_info.constructionTime;
 		}
@@ -23,8 +24,8 @@ namespace Commands
 			m_remainingTime -= Time.deltaTime;
 			if (RemainingTime <= 0)
 			{
-				m_info.CreateUnit(parent.GetComponent<BasicController>().Owner, parent.transform.position + parent.transform.right*5, Quaternion.identity);
-                OnFinished(null);
+				m_info.CreateUnit(m_parent.GetComponent<BasicController>().Owner, m_parent.transform.position + m_parent.transform.right*5, Quaternion.identity);
+                OnFinished();
 			}
 		}
 

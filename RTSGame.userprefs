@@ -1,32 +1,31 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Commands\WaitForBuildPos.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Commands\BuildAt.cs">
     <Files>
-      <File FileName="Assets\Code\Commands\CommandManager.cs" Line="37" Column="1" />
+      <File FileName="Assets\Code\Commands\CommandManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Utils\ParameterInfoExtensions.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Player\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\UnitInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\UnitController.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\PeonInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Commands\BuildAt.cs" Line="25" Column="1" />
-      <File FileName="Assets\Code\Commands\Command.cs" Line="20" Column="1" />
-      <File FileName="Assets\Code\Commands\WaitForBuildPos.cs" Line="31" Column="79" />
-      <File FileName="Assets\Code\Commands\Groups\Build.cs" Line="23" Column="1" />
+      <File FileName="Assets\Code\Commands\BuildAt.cs" Line="20" Column="4" />
+      <File FileName="Assets\Code\Commands\Command.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Commands\WaitForBuildPos.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Commands\Groups\Build.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\Move.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\MoveTo.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\ProduceUnit.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\WaitForClick.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\Infantry\Worker.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Utils\ParameterInfoExtensions.cs" Line="24" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Code" expanded="True">
                 <Node name="Commands" expanded="True">
                   <Node name="Groups" expanded="True" />
-                  <Node name="WaitForBuildPos.cs" selected="True" />
                 </Node>
                 <Node name="Interface" expanded="True" />
                 <Node name="Player" expanded="True" />

@@ -9,21 +9,20 @@ namespace Commands
 	public class MoveTo : Command
 	{
         private Vector3 m_target;
-		public MoveTo(Vector3 target)
+        private CommandManager m_parent;
+		public MoveTo(CommandManager parent,Vector3 target)
 		{
 			m_target = target;
+            m_parent = parent;
+			//find the navagation agent and set the destination
+            m_parent.GetComponent<NavMeshAgent>().destination = m_target;
 		}
 
-        public void Start()
-        {
-            //find the navagation agent and set the destination
-            parent.GetComponent<NavMeshAgent>().destination = m_target;
-        }
         public override void Update()
         {
-            if (parent.GetComponent<NavMeshAgent>().hasPath == false)
+            if (m_parent.GetComponent<NavMeshAgent>().hasPath == false)
             {
-                OnFinished(null);
+                OnFinished();
             }
         }
 	}

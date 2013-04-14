@@ -11,19 +11,18 @@ namespace Commands
 	{
 		private T m_info;
 		private Vector3 m_target;
-		public BuildAt(Vector3 target)
+        private CommandManager m_parent;
+		public BuildAt(CommandManager parent, Vector3 target)
 		{
 			m_target = target;
-		}
-		public virtual void Start()
-		{
+            m_parent = parent;
 			m_info = new T();
 		}
 		public override void Update()
 		{
 			
-			m_info.CreateUnit(parent.GetComponent<BasicController>().Owner, m_target, Quaternion.identity);
-			OnFinished(null);
+			m_info.CreateUnit(m_parent.GetComponent<BasicController>().Owner, m_target, Quaternion.identity);
+			OnFinished();
 		}
 	}
 }

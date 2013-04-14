@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections;
 using UnityEngine;
 using Units;
+using Commands;
 
 
 public class UnitController : BasicController
@@ -29,8 +30,8 @@ public class UnitController : BasicController
     }
     public override void OnIssueCommand(Vector3 pos)
     {
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        moveTo(pos, 0);
+        CommandManager mgr = GetComponent<CommandManager>();
+        mgr.AddCommandNow(new MoveTo(mgr, pos));
     }
 
     ///-------------------------------------------------------------------------------------------------
