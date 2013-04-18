@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         }
         minimap = new Minimap();
         TownCenter center = new TownCenter();
-        center.CreateUnit(this, startPos, Quaternion.identity);
+        center.CreateFreeUnit(this, startPos, Quaternion.identity);
         m_selectionManager = new SelectionManager(this);
     }
     void Update()
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
             GUILayout.BeginVertical();
             foreach (Type c in SelectedUnit.Info.UnitCommands)
             {
-                if (renderCommand(c))
+                if (renderCommand(c, SelectedUnit.CommandQueue.GetCommandCount(c).ToString()))
                 {
                     //in an ideal world the queue would haave events to handle this
                     //but for now this is eaiser, also the collections with events are all
@@ -144,7 +144,6 @@ public class Player : MonoBehaviour
             GUILayout.Label("Selected Unit Health: " + SelectedUnit.Info.CurrHealth + @"/" + SelectedUnit.Info.MaxHealth);
             //GUILayout.Space(100f);
         }
-        
         GUI.DrawTexture(new Rect(300, 0, 128, 128), minimap.Image, ScaleMode.StretchToFill, false);
         GUILayout.BeginVertical();
         GUILayout.Label("Food: " + HarvestedResources.Food);
@@ -160,7 +159,7 @@ public class Player : MonoBehaviour
 
         
     }
-    bool renderCommand(Type command)
+    bool renderCommand(Type command, string additions = "")
     {
         bool retval = false;
         //if we have a timed command we want to draw a label that shows how much time we have left in the building process
@@ -178,10 +177,21 @@ public class Player : MonoBehaviour
         }
         else
         {*/
-            retval = GUILayout.Button(command.ToString());
+            retval = GUILayout.Button(parseCommandButton(command) + additions);
         //}
         return retval;
         
+    }
+
+    private string parseCommandButton(Type command)
+    {
+        String retval;
+        retval = command.Name;
+        foreach (Type t in command.GetGenericArguments())
+        {
+            retval += " " + t.Name;
+        }
+        return retval;
     }
 
 }

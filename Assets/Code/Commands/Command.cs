@@ -25,6 +25,16 @@ namespace Commands
 		{
 			AddCommands(commands);
 		}
+        /// <summary>
+        /// called when the command is executing and the unit is selected, for making the
+        /// information about the command display in the unit area
+        /// 
+        /// Called from OnGUI so feel free to use gui functions
+        /// </summary>
+        public virtual void OnDraw()
+        {
+
+        }
 
 	}
 }

@@ -14,6 +14,7 @@ namespace Units
         GameObject CreateUnit(Player owner, Vector3 pos, Quaternion rotation, bool active = true);
         GameObject CreateGhost(Vector3 pos, Quaternion rotation, bool active = true);
         float constructionTime { get; }
+        Resources Cost { get; }
         float MaxHealth { get; set; }
         float CurrHealth { get; set; }
         

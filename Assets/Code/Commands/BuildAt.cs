@@ -7,22 +7,29 @@ using Units;
 
 namespace Commands
 {
-	class BuildAt<T> : Command where T : IUnitInfo, new()
-	{
-		private T m_info;
-		private Vector3 m_target;
+    class BuildAt<T> : Command where T : IUnitInfo, new()
+    {
+        private T m_info;
+        private Vector3 m_target;
         private CommandManager m_parent;
-		public BuildAt(CommandManager parent, Vector3 target)
-		{
-			m_target = target;
+        public override Type[] ReturnType
+        {
+            get
+            {
+                return new System.Type[] { typeof(Vector3) };
+            }
+        }
+        public BuildAt(CommandManager parent, Vector3 target)
+        {
+            m_target = target;
             m_parent = parent;
-			m_info = new T();
-		}
-		public override void Update()
-		{
-			
-			m_info.CreateUnit(m_parent.GetComponent<BasicController>().Owner, m_target, Quaternion.identity);
-			OnFinished();
-		}
-	}
+            m_info = new T();
+        }
+        public override void Update()
+        {
+            
+            m_info.CreateUnit(m_parent.GetComponent<BasicController>().Owner, m_target, Quaternion.identity);
+            OnFinished(m_target);
+        }
+    }
 }

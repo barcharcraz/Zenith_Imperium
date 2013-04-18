@@ -7,13 +7,17 @@ using Units;
 
 namespace Commands.Groups
 {
-	class Build<T> : Command where T : IUnitInfo, new()
-	{
-		public Build() {} //wierdly I need this for the reflection to work
+    class Build<T> : Command where T : IUnitInfo, new()
+    {
+        public Build()
+        {
+            
+        }
         public override void Update()
         {
-            OnAddCommands(typeof(WaitForBuildPos<T>),typeof(BuildAt<T>));
+            
+            OnAddCommands(typeof(WaitForBuildPos<T>),typeof(MoveTo),typeof(BuildAt<T>));
             OnFinished();
         }
-	}
+    }
 }

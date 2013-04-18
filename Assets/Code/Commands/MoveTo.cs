@@ -6,24 +6,31 @@ using UnityEngine;
 
 namespace Commands
 {
-	public class MoveTo : Command
-	{
+    public class MoveTo : Command
+    {
         private Vector3 m_target;
         private CommandManager m_parent;
-		public MoveTo(CommandManager parent,Vector3 target)
-		{
-			m_target = target;
+        public override Type[] ReturnType
+        {
+            get
+            {
+                return new System.Type[] { typeof(Vector3) };
+            }
+        }
+        public MoveTo(CommandManager parent,Vector3 target)
+        {
+            m_target = target;
             m_parent = parent;
-			//find the navagation agent and set the destination
+            //find the navagation agent and set the destination
             m_parent.GetComponent<NavMeshAgent>().destination = m_target;
-		}
+        }
 
         public override void Update()
         {
             if (m_parent.GetComponent<NavMeshAgent>().hasPath == false)
             {
-                OnFinished();
+                OnFinished(m_target);
             }
         }
-	}
+    }
 }

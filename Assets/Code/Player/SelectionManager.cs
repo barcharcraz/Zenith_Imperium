@@ -16,6 +16,12 @@ class SelectionManager
     }
     public void HandleInput()
     {
+        BasicController unitClicked = OverUnit();
+        //if we moused down on a unit go ahead and select it
+        if (Input.GetButtonDown("Select") && unitClicked != null)
+        {
+            m_player.SelectedUnits = new List<BasicController>() { unitClicked };
+        }
         if (Input.GetButtonDown("Select"))
         {
             m_initialMouse = Input.mousePosition;
@@ -51,5 +57,44 @@ class SelectionManager
                 select cont;
             m_player.SelectedUnits = selected.ToList();
         }
+    }
+    /// <summary>
+    /// tests if the mouse is over a unit and returns true if it is
+    /// </summary>
+    /// <param name="cont">the unit that the mosue was over, this is an out param</param>
+    /// <returns>true if the mouse was over a unit false otherwise</returns>
+    private bool isOverUnit(out BasicController cont)
+    {
+        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+        
+        BasicController retval = null;
+        if (Physics.Raycast(mouseRay, out hitInfo))
+        {
+            retval = hitInfo.collider.gameObject.GetComponent<BasicController>();
+        }
+        //will return null if we did not hit anything
+        if (retval != null)
+        {
+            cont = retval;
+            return true;
+        }
+        else
+        {
+            cont = null;
+            return false;
+        }
+    }
+    private bool isOverUnit()
+    {
+        //we are throwing this away hence the name
+        BasicController devnull;
+        return isOverUnit(out devnull);
+    }
+    private BasicController OverUnit()
+    {
+        BasicController retval;
+        isOverUnit(out retval);
+        return retval;
     }
 }

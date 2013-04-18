@@ -11,11 +11,12 @@ namespace Commands
 {
     public class CommandManager : MonoBehaviour
     {
-        private Command executingCommand
+        public Command executingCommand
         {
             get { return m_executionQueue.Peek(); }
             set { m_executionQueue.Push(value); }
         }
+        private Dictionary<Type, int> m_commandCount;
         private Queue<Type> m_commandQueue;
         private Deque<Command> m_executionQueue;
         private Dictionary<Type,System.Object> m_argProviders;
@@ -25,6 +26,7 @@ namespace Commands
             m_executionQueue = new Deque<Command>();
             m_argProviders = new Dictionary<Type, System.Object>();
             m_argProviders.Add(this.GetType(),this);
+            m_commandCount = new Dictionary<Type, int>();
         }
         public void handleCommand(Command src, params System.Object[] args)
         {
@@ -35,6 +37,7 @@ namespace Commands
             {
                 src.Finished -= handleCommand;
                 src.AddCommands -= AddCommands;
+                m_commandCount[src.GetType()]--;
             }
             //we dont want to proceed to the next command if there isnt one
             if(m_commandQueue.Count > 0) {
@@ -47,7 +50,7 @@ namespace Commands
                 IEnumerable<ConstructorInfo> possibleConst = GetCompatibleConstructors(nextCommand, src);
                 Command nextCommandinst = InvokeWithProvider(possibleConst.First(), args) as Command;
                 //nextCommandinst.parent = this;
-                AddCommand(nextCommandinst);
+                m_executionQueue.Enqueue(nextCommandinst);
             }
             
         }
@@ -63,17 +66,20 @@ namespace Commands
         {
             command.Finished += handleCommand;
             command.AddCommands += AddCommands;
+            m_commandCount[command.GetType()]++;
             m_executionQueue.Push(command);
         }
         public void AddCommand(Command command)
         {
             command.Finished += handleCommand;
             command.AddCommands += AddCommands;
+            m_commandCount[command.GetType()]++;
             m_executionQueue.Enqueue(command);
         }
         public void AddCommand(Type command)
         {
             m_commandQueue.Enqueue(command);
+            m_commandCount[command]++;
             //only want to kick off execution if we are not already executing anything, otherwise that previous thing can continue on its way
             if (executingCommand==null)
             {
@@ -106,6 +112,9 @@ namespace Commands
                                                   select c; */
 
             List<ConstructorInfo> retval = new List<ConstructorInfo>();
+            //use this so that if we cant find any matches we can still use the void constructor and ignore return values
+            //note that this does include the provided args
+            ConstructorInfo voidConstructor = null;
             foreach (ConstructorInfo c in command.GetConstructors())
             {
                 //we want to split the list into the ordered and unordered parts of the parameter list
@@ -117,11 +126,23 @@ namespace Commands
                                                      where p.Position >= c.GetParameters().Length - signature.Length
                                                      select p;
                 //only a match if every element of the unordered section is of a type that is in the parameter providers map
-                //and if the ordered section exactly matches the type signature
-                if ((unordered.Count()==0 || unordered.All(p => m_argProviders.ContainsKey(p.ParameterType))) && ordered.ToArray().IsEqual(signature))
+                if (unordered.Count() == 0 || unordered.All((p => m_argProviders.ContainsKey(p.ParameterType))))
                 {
-                    retval.Add(c);
+                    //if the ordered sections matches
+                    if (ordered.ToArray().IsEqual(signature))
+                    {
+                        retval.Add(c);
+                    }
+                    else if (ordered.Count() == 0)
+                    {
+                        //if the ordered section is null than we can still use this if we dont find anything else, so cache it
+                        voidConstructor = c;
+                    }
                 }
+            }
+            if (retval.Count == 0 && voidConstructor != null)
+            {
+                retval.Add(voidConstructor);
             }
             return retval;
         }
@@ -143,6 +164,22 @@ namespace Commands
                 return c.Invoke(providedArgs.ToArray());
             }
             
+        }
+
+
+
+        public int GetCommandCount(Type command)
+        {
+            //dont initilize the dictionary until we ask for it
+            if (!m_commandCount.ContainsKey(command))
+            {
+                m_commandCount.Add(command, 0);
+            }
+            return m_commandCount[command];
+        }
+        public int GetCommandCount<T>()
+        {
+            return GetCommandCount(typeof(T));
         }
         
         

@@ -19,7 +19,7 @@ namespace Units
         {
             get { return Cost.Sum() / 5; }
         }
-        public Resources Cost;
+        public Resources Cost { get; set; }
         public virtual GameObject Prefab { get; set; }
         public List<Type> m_unitCommands;
         public float Speed;
@@ -37,14 +37,23 @@ namespace Units
             // max health
             CurrHealth = MaxHealth;
 
+            if (!owner.HarvestedResources.HasEnoughResources(Cost))
+            {
+                throw new Exceptions.NotEnoughResourcesException("not enough resources to build " + Name);
+            }
+
             GameObject retval;
             retval = UnityEngine.Object.Instantiate(Prefab, pos, rotation) as GameObject;
             retval.SetActive(active);
             retval.GetComponent<BasicController>().Info = this;
             retval.GetComponent<BasicController>().Owner = owner;
             owner.HarvestedResources -= Cost;
-            
             return retval;
+        }
+        public GameObject CreateFreeUnit(Player owner, Vector3 pos, Quaternion rotation, bool active = true)
+        {
+            owner.HarvestedResources += Cost;
+            return CreateUnit(owner, pos, rotation, active);
         }
         public GameObject CreateGhost(Vector3 pos, Quaternion rotation, bool active=true)
         {

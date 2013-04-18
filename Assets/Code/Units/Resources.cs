@@ -152,5 +152,17 @@ public class Resources
     {
         return lhs.Sum() > rhs;
     }
+    public bool HasEnoughResources(Resources rhs)
+    {
+        bool retval = true;
+        for (int i = 0; i < ResourceArray.Length; i++)
+        {
+            if (rhs.ResourceArray[i] > ResourceArray[i])
+            {
+                retval = false;
+            }
+        }
+        return retval;
+    }
 
 }
