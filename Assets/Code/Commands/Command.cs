@@ -19,6 +19,7 @@ namespace Commands
 		{
 			Finished(this, retval);
 		}
+		public virtual void Init() {}
 		public abstract void Update();
 		
 		protected virtual void OnAddCommands(params Type[] commands)

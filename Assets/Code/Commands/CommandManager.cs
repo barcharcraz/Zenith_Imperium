@@ -19,13 +19,29 @@ namespace Commands
         private Dictionary<Type, int> m_commandCount;
         private Queue<Type> m_commandQueue;
         private Deque<Command> m_executionQueue;
-        private Dictionary<Type,System.Object> m_argProviders;
-        public void Start() 
+        private Dictionary<Type, System.Object> m_argProviders;
+
+        public BasicController ParentController
+        {
+            get
+            {
+                return GetComponent<BasicController>();
+            }
+        }
+        public Player Owner
+        {
+            get
+            {
+                return ParentController.Owner;
+            }
+        }
+
+        public void Start()
         {
             m_commandQueue = new Queue<Type>();
             m_executionQueue = new Deque<Command>();
             m_argProviders = new Dictionary<Type, System.Object>();
-            m_argProviders.Add(this.GetType(),this);
+            m_argProviders.Add(this.GetType(), this);
             m_commandCount = new Dictionary<Type, int>();
         }
         public void handleCommand(Command src, params System.Object[] args)
@@ -40,9 +56,10 @@ namespace Commands
                 m_commandCount[src.GetType()]--;
             }
             //we dont want to proceed to the next command if there isnt one
-            if(m_commandQueue.Count > 0) {
+            if (m_commandQueue.Count > 0)
+            {
                 Type nextCommand = m_commandQueue.Dequeue();
-            
+
                 if (nextCommand.BaseType != typeof(Commands.Command))
                 {
                     throw new InvalidOperationException("Commands must inherit from Command type " + nextCommand + "does not");
@@ -50,15 +67,16 @@ namespace Commands
                 IEnumerable<ConstructorInfo> possibleConst = GetCompatibleConstructors(nextCommand, src);
                 Command nextCommandinst = InvokeWithProvider(possibleConst.First(), args) as Command;
                 //nextCommandinst.parent = this;
+                nextCommandinst.Init();
                 m_executionQueue.Enqueue(nextCommandinst);
             }
-            
+
         }
         public void AddCommands(params Type[] commands)
         {
             foreach (Type c in commands)
             {
-                
+
                 AddCommand(c);
             }
         }
@@ -66,6 +84,7 @@ namespace Commands
         {
             command.Finished += handleCommand;
             command.AddCommands += AddCommands;
+            command.Init();
             m_commandCount[command.GetType()]++;
             m_executionQueue.Push(command);
         }
@@ -73,6 +92,7 @@ namespace Commands
         {
             command.Finished += handleCommand;
             command.AddCommands += AddCommands;
+            command.Init();
             m_commandCount[command.GetType()]++;
             m_executionQueue.Enqueue(command);
         }
@@ -81,15 +101,15 @@ namespace Commands
             m_commandQueue.Enqueue(command);
             m_commandCount[command]++;
             //only want to kick off execution if we are not already executing anything, otherwise that previous thing can continue on its way
-            if (executingCommand==null)
+            if (executingCommand == null)
             {
                 handleCommand(null, null);
             }
-            
+
         }
-        public void Update() 
+        public void Update()
         {
-            if(executingCommand != null) 
+            if (executingCommand != null)
             {
                 executingCommand.Update();
             }
@@ -98,10 +118,12 @@ namespace Commands
         private IEnumerable<ConstructorInfo> GetCompatibleConstructors(Type command, Command prev)
         {
             //we want to get an empty constructor if there was no prev command
-            if(prev == null)
+            if (prev == null)
             {
                 return GetCompatibleConstructors(command);
-            } else {
+            }
+            else
+            {
                 return GetCompatibleConstructors(command, prev.ReturnType);
             }
         }
@@ -119,8 +141,8 @@ namespace Commands
             {
                 //we want to split the list into the ordered and unordered parts of the parameter list
                 IEnumerable<ParameterInfo> unordered = from ParameterInfo p in c.GetParameters()
-                                                where p.Position < c.GetParameters().Length - signature.Length
-                                                select p;
+                                                       where p.Position < c.GetParameters().Length - signature.Length
+                                                       select p;
                 //next we want to ordered part of the parameter list
                 IEnumerable<ParameterInfo> ordered = from ParameterInfo p in c.GetParameters()
                                                      where p.Position >= c.GetParameters().Length - signature.Length
@@ -155,15 +177,15 @@ namespace Commands
                 providedArgs.Add(m_argProviders[c.GetParameters()[i].ParameterType]);
             }
             //invoke the constructor with the provided args first followed by the passed in args
-            if(ordered != null) 
+            if (ordered != null)
             {
                 return c.Invoke(providedArgs.Concat(ordered).ToArray());
-            } 
-            else 
+            }
+            else
             {
                 return c.Invoke(providedArgs.ToArray());
             }
-            
+
         }
 
 
@@ -181,7 +203,7 @@ namespace Commands
         {
             return GetCommandCount(typeof(T));
         }
-        
-        
+
+
     }
 }

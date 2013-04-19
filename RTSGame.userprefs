@@ -1,38 +1,32 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Commands\BuildAt.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Commands\Command.cs">
     <Files>
+      <File FileName="Assets\Code\Commands\Command.cs" Line="20" Column="1" />
       <File FileName="Assets\Code\Commands\CommandManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Utils\ParameterInfoExtensions.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Player\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\UnitInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\UnitController.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\PeonInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Commands\BuildAt.cs" Line="20" Column="4" />
-      <File FileName="Assets\Code\Commands\Command.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Commands\BuildAt.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\WaitForBuildPos.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\Groups\Build.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\Move.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\MoveTo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Commands\ProduceUnit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Commands\ProduceUnit.cs" Line="34" Column="16" />
       <File FileName="Assets\Code\Commands\WaitForClick.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\Infantry\Worker.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
+        <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Code" expanded="True">
                 <Node name="Commands" expanded="True">
-                  <Node name="Groups" expanded="True" />
+                  <Node name="Command.cs" selected="True" />
                 </Node>
-                <Node name="Interface" expanded="True" />
-                <Node name="Player" expanded="True" />
-                <Node name="Units" expanded="True">
-                  <Node name="Infantry" expanded="True" />
-                </Node>
-                <Node name="Utils" expanded="True" />
               </Node>
             </Node>
           </Node>

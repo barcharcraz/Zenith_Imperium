@@ -157,7 +157,7 @@ public class Resources
         bool retval = true;
         for (int i = 0; i < ResourceArray.Length; i++)
         {
-            if (rhs.ResourceArray[i] > ResourceArray[i])
+            if (ResourceArray[i] > rhs.ResourceArray[i])
             {
                 retval = false;
             }

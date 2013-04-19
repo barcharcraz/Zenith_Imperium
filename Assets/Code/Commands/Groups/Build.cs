@@ -9,14 +9,19 @@ namespace Commands.Groups
 {
     class Build<T> : Command where T : IUnitInfo, new()
     {
-        public Build()
+        private CommandManager m_parent;
+        public Build(CommandManager parent)
         {
-            
+            m_parent = parent;
         }
         public override void Update()
         {
-            
-            OnAddCommands(typeof(WaitForBuildPos<T>),typeof(MoveTo),typeof(BuildAt<T>));
+            Resources parentResources = m_parent.GetComponent<BasicController>().Owner.HarvestedResources;
+            Resources cost = new T().Cost;
+            if (parentResources.HasEnoughResources(cost))
+            {
+                OnAddCommands(typeof(WaitForBuildPos<T>), typeof(MoveTo), typeof(BuildAt<T>));
+            }
             OnFinished();
         }
     }
