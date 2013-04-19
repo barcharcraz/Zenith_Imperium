@@ -16,6 +16,14 @@ namespace Commands
             get { return m_executionQueue.Peek(); }
             set { m_executionQueue.Push(value); }
         }
+        public Queue<Type> QueuedCommands
+        {
+            get { return m_commandQueue; }
+        }
+        public Deque<Command> ExecutingCommands
+        {
+            get { return m_executionQueue; }
+        }
         private Dictionary<Type, int> m_commandCount;
         private Queue<Type> m_commandQueue;
         private Deque<Command> m_executionQueue;
@@ -68,7 +76,7 @@ namespace Commands
                 Command nextCommandinst = InvokeWithProvider(possibleConst.First(), args) as Command;
                 //nextCommandinst.parent = this;
                 nextCommandinst.Init();
-                m_executionQueue.Enqueue(nextCommandinst);
+                QueueCommandRaw(nextCommandinst);
             }
 
         }
@@ -82,19 +90,14 @@ namespace Commands
         }
         public void AddCommandNow(Command command)
         {
-            command.Finished += handleCommand;
-            command.AddCommands += AddCommands;
-            command.Init();
+            PushCommandRaw(command);
             m_commandCount[command.GetType()]++;
-            m_executionQueue.Push(command);
         }
         public void AddCommand(Command command)
         {
-            command.Finished += handleCommand;
-            command.AddCommands += AddCommands;
-            command.Init();
+            QueueCommandRaw(command);
             m_commandCount[command.GetType()]++;
-            m_executionQueue.Enqueue(command);
+
         }
         public void AddCommand(Type command)
         {
@@ -107,6 +110,28 @@ namespace Commands
             }
 
         }
+        /// <summary>
+        /// add a command without incrementing the command type's counter, used
+        /// internally
+        /// </summary>
+        /// <param name="command"> the command to add</param>
+        private void InitCommandRaw(Command command)
+        {
+            command.Finished += handleCommand;
+            command.AddCommands += AddCommands;
+            command.Init();
+        }
+        private void QueueCommandRaw(Command command)
+        {
+            InitCommandRaw(command);
+            m_executionQueue.Enqueue(command);
+        }
+        private void PushCommandRaw(Command command)
+        {
+            InitCommandRaw(command);
+            m_executionQueue.Push(command);
+        }
+        
         public void Update()
         {
             if (executingCommand != null)
