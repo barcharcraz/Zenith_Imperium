@@ -16,8 +16,8 @@ namespace Commands.Groups
         }
         public override void Update()
         {
-            Resources parentResources = m_parent.GetComponent<BasicController>().Owner.HarvestedResources;
-            Resources cost = new T().Cost;
+            Units.Resources parentResources = m_parent.GetComponent<BasicController>().Owner.HarvestedResources;
+            Units.Resources cost = new T().Cost;
             if (parentResources.HasEnoughResources(cost))
             {
                 OnAddCommands(typeof(WaitForBuildPos<T>), typeof(MoveTo), typeof(BuildAt<T>));

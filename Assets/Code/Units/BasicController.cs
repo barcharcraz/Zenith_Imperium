@@ -77,6 +77,25 @@ public abstract class BasicController : MonoBehaviour
         m_selectionBox.SetActive(false);
 
     }
+    /// <summary>
+    /// plays the deal animation of the unit and disables unit updates, the body stays
+    /// around
+    /// </summary>
+    public void KillUnit()
+    {
+        setKilled(true);
+        this.gameObject.SetActive(false);
+    }
+
+    private void setKilled(bool val)
+    {
+        Animator anim = GetComponentInChildren<Animator>();
+        if (anim != null && anim.GetBool("Killed") != val)
+        {
+
+            anim.SetBool("Killed", val);
+        }
+    }
 
 }
 

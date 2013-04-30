@@ -2,10 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Commands\CommandManager.cs">
     <Files>
+      <File FileName="Assets\Code\Player\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Commands\CommandManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\Command.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Commands\CommandManager.cs" Line="101" Column="1" />
       <File FileName="Assets\Code\Utils\ParameterInfoExtensions.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Player\Player.cs" Line="54" Column="1" />
       <File FileName="Assets\Code\Units\UnitInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\UnitController.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\PeonInfo.cs" Line="1" Column="1" />
@@ -14,10 +14,10 @@
       <File FileName="Assets\Code\Commands\Groups\Build.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\Move.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\MoveTo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Commands\ProduceUnit.cs" Line="35" Column="1" />
+      <File FileName="Assets\Code\Commands\ProduceUnit.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Commands\WaitForClick.cs" Line="1" Column="1" />
       <File FileName="Assets\Code\Units\Infantry\Worker.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Units\BasicController.cs" Line="20" Column="1" />
+      <File FileName="Assets\Code\Units\BasicController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -49,8 +49,6 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="C:\Users\Charlie\Documents\RTSGame\Assets\Interface\MinimapController.cs" line="24" />
-      <Breakpoint file="E:\Personal\Documents\GitHub\RTSGame\Assets\Code\Commands\CommandManager.cs" line="59" />
-      <Breakpoint file="E:\Personal\Documents\GitHub\RTSGame\Assets\Code\Player\Player.cs" line="139" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

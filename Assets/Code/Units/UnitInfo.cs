@@ -25,6 +25,8 @@ namespace Units
         public float Speed;
         public virtual float MaxHealth { get; set; }
         public virtual float CurrHealth { get; set; }
+        public virtual float AttackRange { get; set; }
+        public virtual float AttackPower { get; set; }
         public UnitInfo()
         {
             Cost = new Resources();

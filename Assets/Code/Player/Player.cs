@@ -59,11 +59,11 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public Resources HarvestedResources { get; set; }
+    public Units.Resources HarvestedResources { get; set; }
     public UnityEngine.Vector3 startPos;
     void Start()
     {
-        HarvestedResources = new Resources();
+        HarvestedResources = new Units.Resources();
         if (playerView == null)
         {
             playerView = GetComponent<Camera>();

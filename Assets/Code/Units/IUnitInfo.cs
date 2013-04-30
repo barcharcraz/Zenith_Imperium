@@ -17,6 +17,8 @@ namespace Units
         Resources Cost { get; }
         float MaxHealth { get; set; }
         float CurrHealth { get; set; }
+        float AttackRange { get; set; }
+        float AttackPower { get; set; }
         
     }
 }

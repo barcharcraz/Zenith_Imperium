@@ -16,7 +16,7 @@ namespace Commands
             get { return m_executionQueue.Peek(); }
             set { m_executionQueue.Push(value); }
         }
-        public Queue<Type> QueuedCommands
+        public Deque<Type> QueuedCommands
         {
             get { return m_commandQueue; }
         }
@@ -25,7 +25,7 @@ namespace Commands
             get { return m_executionQueue; }
         }
         private Dictionary<Type, int> m_commandCount;
-        private Queue<Type> m_commandQueue;
+        private Deque<Type> m_commandQueue;
         private Deque<Command> m_executionQueue;
         private Dictionary<Type, System.Object> m_argProviders;
 
@@ -46,7 +46,7 @@ namespace Commands
 
         public void Start()
         {
-            m_commandQueue = new Queue<Type>();
+            m_commandQueue = new Deque<Type>();
             m_executionQueue = new Deque<Command>();
             m_argProviders = new Dictionary<Type, System.Object>();
             m_argProviders.Add(this.GetType(), this);
@@ -61,7 +61,7 @@ namespace Commands
             {
                 src.Finished -= handleCommand;
                 src.AddCommands -= AddCommands;
-                m_commandCount[src.GetType()]--;
+                SafeCountDeincrement(src.GetType());
             }
             //we dont want to proceed to the next command if there isnt one
             if (m_commandQueue.Count > 0)
@@ -88,21 +88,32 @@ namespace Commands
                 AddCommand(c);
             }
         }
+        
         public void AddCommandNow(Command command)
         {
             PushCommandRaw(command);
-            m_commandCount[command.GetType()]++;
+            SafeCountIncrement(command.GetType());
         }
         public void AddCommand(Command command)
         {
             QueueCommandRaw(command);
-            m_commandCount[command.GetType()]++;
+            SafeCountIncrement(command.GetType());
 
+        }
+        /// <summary>
+        /// adds command to the frount of the type queue, in other words
+        /// pushes them onto the queue
+        /// </summary>
+        /// <param name="command"> the command to add</param>
+        public void AddCommandNow(Type command)
+        {
+            m_commandQueue.Push(command);
+            SafeCountIncrement(command);
         }
         public void AddCommand(Type command)
         {
             m_commandQueue.Enqueue(command);
-            m_commandCount[command]++;
+            SafeCountIncrement(command);
             //only want to kick off execution if we are not already executing anything, otherwise that previous thing can continue on its way
             if (executingCommand == null)
             {
@@ -131,7 +142,26 @@ namespace Commands
             InitCommandRaw(command);
             m_executionQueue.Push(command);
         }
-        
+
+        /// <summary>
+        /// Increments the count of m_commandCount by one if
+        /// <paramref name="commandType"/> is in 
+        /// </summary>
+        /// <param name="commandType"></param>
+        private void SafeCountIncrement(Type commandType)
+        {
+            if (m_commandCount.ContainsKey(commandType))
+            {
+                m_commandCount[commandType]++;
+            }
+        }
+        private void SafeCountDeincrement(Type commandType)
+        {
+            if (m_commandCount.ContainsKey(commandType))
+            {
+                m_commandCount[commandType]--;
+            }
+        }
         public void Update()
         {
             if (executingCommand != null)
