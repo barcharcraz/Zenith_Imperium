@@ -21,19 +21,7 @@
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Code" expanded="True">
-                <Node name="Commands" expanded="True">
-                  <Node name="CommandManager.cs" selected="True" />
-                </Node>
-                <Node name="Player" expanded="True" />
-                <Node name="Units" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
